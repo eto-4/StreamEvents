@@ -1,0 +1,87 @@
+[
+  {
+    "model": "users.customuser",
+    "pk": 1,
+    "fields": {
+      "username": "admin",
+      "email": "admin@streamevents.com",
+      "password": "pbkdf2_sha256$260000$KXCUl8AA45BsvzkGMoie03$68stJKrqRVy1ydBZpMIBAapVwBifItT0uVS5HEZ9KJI=",
+      "is_staff": true,
+      "is_superuser": true,
+      "is_active": true,
+      "date_joined": "2025-10-08T16:50:11.357309+00:00",
+      "groups": [
+        1
+      ],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "users.customuser",
+    "pk": 2,
+    "fields": {
+      "username": "organitzador1",
+      "email": "org1@streamevents.com",
+      "password": "pbkdf2_sha256$260000$haGHHbsm1sIp2Ii5mdncjS$LwenVr/+ftgXIZelEPg3/KtzKHaFNbre8pppTWDEOy0=",
+      "is_staff": false,
+      "is_superuser": false,
+      "is_active": true,
+      "date_joined": "2025-10-08T16:50:11.436410+00:00",
+      "groups": [
+        1
+      ],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "users.customuser",
+    "pk": 3,
+    "fields": {
+      "username": "participant1",
+      "email": "part1@streamevents.com",
+      "password": "pbkdf2_sha256$260000$SzlSLjdOxdHqcJXbSAksRA$NZC1vs1InsUD7a4QJCfi6NkKAIQImFR2iWLDqdzv1so=",
+      "is_staff": false,
+      "is_superuser": false,
+      "is_active": true,
+      "date_joined": "2025-10-08T16:50:11.512381+00:00",
+      "groups": [
+        2
+      ],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "users.customuser",
+    "pk": 4,
+    "fields": {
+      "username": "participant2",
+      "email": "part2@streamevents.com",
+      "password": "pbkdf2_sha256$260000$0hiiQPF9PxQnrAuQZaKXDC$wqYtCrbKfBmjzU6BpbCPf/OUSoskfvxkJK1LkCp2BRo=",
+      "is_staff": false,
+      "is_superuser": false,
+      "is_active": true,
+      "date_joined": "2025-10-08T16:50:11.586397+00:00",
+      "groups": [
+        2
+      ],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "users.customuser",
+    "pk": 5,
+    "fields": {
+      "username": "moderador1",
+      "email": "mod1@streamevents.com",
+      "password": "pbkdf2_sha256$260000$CszKF1bGvQpGeruAUrIALW$R+C9YFjmRdygCBZgXs4w33h3Sq+L7er5d96rE7iFH1A=",
+      "is_staff": false,
+      "is_superuser": false,
+      "is_active": true,
+      "date_joined": "2025-10-08T16:50:11.662280+00:00",
+      "groups": [
+        3
+      ],
+      "user_permissions": []
+    }
+  }
+]
