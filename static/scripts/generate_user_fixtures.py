@@ -15,7 +15,7 @@ django.setup()
 from django.contrib.auth.hashers import make_password
 
 # -----------------------------
-# 1️⃣ Grups
+# Grups
 # -----------------------------
 groups = [
     {
@@ -51,7 +51,7 @@ with open(groups_output_path, "w", encoding="utf-8") as f:
 print(f"Fixture de grups generada en: {groups_output_path}")
 
 # -----------------------------
-# 2️⃣ Usuaris
+# Usuaris
 # -----------------------------
 users = [
     {
