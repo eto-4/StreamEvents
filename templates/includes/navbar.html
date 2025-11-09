@@ -1,0 +1,60 @@
+{% load static %}
+
+{# Barra de navegació principal amb Bootstrap 5 #}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+
+  {# Contenidor fluid que fa servir flexbox per separar logo i enllaços #}
+  <div class="container-fluid d-flex justify-content-between align-items-center">
+
+    {# ESQUERRA: Logo i nom de l'aplicació #}
+    <a class="navbar-brand fw-bold text-light" href="/">
+      {# Logo com a imatge circular amb marge a la dreta #}
+      <img src="{% static 'images/SEIco.png' %}" alt="Logo" width="50" height="50" class="me-2 rounded-circle">
+      StreamEvents
+    </a>
+
+    {# BOTÓ RESPONSIVE: apareix en pantalles petites per mostrar menú col·lapsat #}
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav"
+            aria-controls="nav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    {# DRETA: Enllaços d'usuari i avatar, col·lapsables en dispositius petits #}
+    <div class="collapse navbar-collapse justify-content-end" id="nav">
+      {# Llista d'enllaços amb separació entre elements #}
+      <ul class="navbar-nav d-flex align-items-center gap-3">
+
+        {# Condicional: si l'usuari està autenticat mostrem avatar i enllaços de perfil/logout #}
+        {% if request.user.is_authenticated %}
+          {# Avatar de l'usuari, si no en té mostrem una imatge per defecte #}
+          <li class="nav-item">
+            <img src="{% if request.user.avatar %}{{ request.user.avatar.url }}{% else %}{% static 'images/default_avatar.jpg' %}{% endif %}"
+                 alt="Avatar"
+                 class="rounded-circle border border-light"
+                 style="width:40px; height:40px; object-fit:cover;">
+          </li>
+
+          {# Enllaç al perfil de l'usuari #}
+          <li class="nav-item">
+            <a class="nav-link text-light fw-semibold" href="{% url 'users:profile' %}">Perfil</a>
+          </li>
+
+          {# Enllaç per tancar sessió #}
+          <li class="nav-item">
+            <a class="nav-link text-light fw-semibold" href="{% url 'users:logout' %}">Tancar sessió</a>
+          </li>
+
+        {# Si l'usuari no està autenticat, mostrem enllaços per login i registre #}
+        {% else %}
+          <li class="nav-item">
+            <a class="nav-link text-light fw-semibold" href="{% url 'users:login' %}">Inicia sessió</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-light fw-semibold" href="{% url 'users:register' %}">Registra't</a>
+          </li>
+        {% endif %}
+
+      </ul>
+    </div>
+  </div>
+</nav>

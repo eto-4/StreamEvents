@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {# Capçalera principal de la pàgina d'inici #}
+    <h1>Benvingut a StreamEvents!</h1>
+
+    {# Div centralitzat per al contingut principal #}
+    <div class="text-center">
+
+        {# Si l'usuari està autenticat, mostrem un missatge de benvinguda personalitzat #}
+        {% if user.is_authenticated %}
+            <p>Hola, <strong>{{ user.username }}</strong> 👋😊</p>
+
+        {# Si no està autenticat, oferim botons per iniciar sessió o registrar-se #}
+        {% else %}
+            <p>
+                <a href="{% url 'users:login' %}" class="btn btn-primary">Inicia sessió</a> 
+                o 
+                <a href="{% url 'users:register' %}" class="btn btn-success">Registra't</a>
+            </p>
+        {% endif %}
+        
+    </div>
+{% endblock %}

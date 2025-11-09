@@ -1,0 +1,72 @@
+{% load static %}
+<!doctype html>
+<html lang="ca">
+    <head>
+        {# Configuració de caràcters i vista per a dispositius mòbils #}
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        {# Títol de la pàgina, personalitzable per cada template que extengui base.html #}
+        <title>{% block title %}StreamEvents{% endblock %}</title>
+
+        {# Icona de la pàgina carregada des de la carpeta static #}
+        <link rel="shortcut icon" href="{% static 'images/SEIco.png' %}" type="image/x-icon">
+
+        {# Enllaç a Bootstrap 5 des del CDN #}
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+        {# Estils interns per a la disposició general de la pàgina #}
+        <style>
+            /* Defineix que el cos ocupa tota l'altura i organitza columnes verticals */
+            body {
+              display: flex;
+              flex-direction: column;
+              min-height: 100vh;
+            }
+
+            /* Main ocupa tot l'espai restant entre navbar i footer */
+            main {
+              flex: 1;
+            }
+
+            /* Centrat de tots els títols i marge inferior consistent */
+            h1, h2, h3 {
+              text-align: center;
+              margin-bottom: 1.5rem;
+            }
+
+            /* Estils per al footer: fons fosc, text clar, sempre a la part inferior */
+            footer {
+              background-color: #212529;
+              color: #ddd;
+              position: relative;
+              bottom: 0;
+              width: 100%;
+            }
+
+            /* Color lleugerament més clar per a textos petits del footer */
+            footer small {
+              color: #bbb;
+            }
+        </style>
+    </head>
+
+    <body class="bg-light">
+        {# Inclou la barra de navegació #}
+        {% include 'includes/navbar.html' %}
+
+        {# Contenidor principal del contingut amb padding vertical #}
+        <main class="container py-4">
+            {# Inclou missatges flash (errors, èxits) #}
+            {% include 'includes/messages.html' %}
+            {# Bloc de contingut específic de cada pàgina #}
+            {% block content %}{% endblock %}
+        </main>
+
+        {# Inclou el footer #}
+        {% include 'includes/footer.html' %}
+
+        {# Script de Bootstrap per a funcionalitats interactives #}
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    </body>
+</html>

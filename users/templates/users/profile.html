@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}El meu perfil{% endblock %}
+
+{% block content %}
+    {# Títol centrat amb el nom de display de l'usuari #}
+    <h1>Perfil de {{ user.display_name|default:user.username }}</h1>
+
+    {# Card centralitzada amb ombra i amplada màxima #}
+    <div class="card mx-auto shadow-sm" style="max-width:500px;">
+        <div class="card-body text-center">
+
+            {# Imatge de perfil: si existeix avatar d'usuari, el mostrem, si no, la imatge per defecte #}
+            <img src="{% if user.avatar %}{{ user.avatar.url }}{% else %}{% static 'images/default_avatar.jpg' %}{% endif %}" 
+                 alt="Avatar de {{ user.username }}"
+                 class="rounded-circle mb-3"
+                 width="250"
+                 height="250"
+                 style="object-fit:cover;">
+
+            {# Mostrem el nom real de l'usuari #}
+            <p><strong>Nom:</strong> {{ user.first_name }} {{ user.last_name }}</p>
+
+            {# Mostrem display_name si existeix #}
+            {% if user.display_name %}
+                <p><strong>Display:</strong> {{ user.display_name }}</p>
+            {% endif %}
+
+            {# Mostrem bio si existeix #}
+            {% if user.bio %}
+                <p>{{ user.bio }}</p>
+            {% endif %}
+
+            {# Botó per editar perfil #}
+            <a href="{% url 'users:edit_profile' %}" class="btn btn-secondary mt-2">Editar perfil</a>
+
+        </div>
+    </div>
+{% endblock %}

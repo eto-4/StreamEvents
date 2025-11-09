@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {# Títol de la pestanya del navegador amb el nom d'usuari públic #}
+    Perfil públic de {{ profile_user.username }}
+{% endblock %}
+
+{% block content %}
+    {# Capçalera principal amb el nom d'usuari públic #}
+    <h1>Perfil públic de {{ profile_user.username }}</h1>
+
+    {# Card centrada amb ombra i amplada màxima definida #}
+    <div class="card mx-auto shadow-sm" style="max-width:500px;">
+        <div class="card-body text-center">
+
+            {# Mostra l'avatar de l'usuari si existeix #}
+            {% if profile_user.avatar %}
+                <img src="{{ profile_user.avatar.url }}" 
+                     alt="Avatar de {{ profile_user.username }}" 
+                     class="rounded-circle mb-3" 
+                     width="120">
+            {% endif %}
+
+            {# Mostra el nom real de l'usuari #}
+            <p><strong>Nom:</strong> {{ profile_user.first_name }} {{ profile_user.last_name }}</p>
+
+            {# Mostra el display name només si existeix #}
+            {% if profile_user.display_name %}
+                <p><strong>Display:</strong> {{ profile_user.display_name }}</p>
+            {% endif %}
+
+            {# Mostra la bio de l'usuari només si existeix #}
+            {% if profile_user.bio %}
+                <p>{{ profile_user.bio }}</p>
+            {% endif %}
+
+        </div>
+    </div>
+{% endblock %}

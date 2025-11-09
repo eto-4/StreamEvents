@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{# Defineix el títol de la pàgina que apareixerà al navegador #}
+{% block title %}Inicia sessió{% endblock %}
+
+{# Bloc principal de contingut de la pàgina #}
+{% block content %}
+    {# Títol principal de la pàgina, centrat per defecte amb Bootstrap si es vol #}
+    <h1 class="text-center mb-4">Inicia sessió</h1>
+
+    {# Contenidor centrat amb ample màxim per fer el formulari més compacte #}
+    <div class="mx-auto" style="max-width:400px;">
+
+        {# Formulari de login amb protecció CSRF #}
+        <form method="post">{% csrf_token %}
+
+            {# Renderitza tots els camps del formulari amb salts de línia (as_p) #}
+            {{ form.as_p }}
+
+            {# Botó d'enviament del formulari, ample 100% del contenidor #}
+            <button class="btn btn-primary w-100" type="submit">Entra</button>
+        </form>
+    </div>
+{% endblock %}

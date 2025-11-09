@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{# Defineix el títol de la pàgina que apareixerà al navegador #}
+{% block title %}Registre{% endblock %}
+
+{# Bloc principal de contingut de la pàgina #}
+{% block content %}
+    {# Títol principal de la pàgina, es pot centrar i afegir marge inferior #}
+    <h1 class="text-center mb-4">Registre</h1>
+
+    {# Contenidor centrat amb ample màxim per fer el formulari compacte #}
+    <div class="mx-auto" style="max-width:400px;">
+
+        {# Formulari de registre amb protecció CSRF #}
+        <form method="post">{% csrf_token %}
+
+            {# Renderitza tots els camps del formulari amb salts de línia (as_p) #}
+            {{ form.as_p }}
+
+            {# Botó d'enviament del formulari, estil Bootstrap verd i ample 100% #}
+            <button class="btn btn-success w-100" type="submit">Registra't</button>
+        </form>
+    </div>
+{% endblock %}

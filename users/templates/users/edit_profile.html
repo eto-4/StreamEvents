@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block title %}Editar Perfil{% endblock %}
+{% block content %}
+    {# Títol centrat de la pàgina #}
+    <h1>Editar Perfil</h1>
+
+    {# Contenidor centralitzat amb amplada màxima #}
+    <div class="mx-auto" style="max-width:500px;">
+        {# Mostra l'avatar actual si existeix #}
+        {% if user.avatar %}
+            <div class="text-center mt-4">
+            
+                {# Títol de la secció d'avatar #}
+                <h5 class="mb-3">Avatar actual</h5>
+            
+                {# Imatge de l'avatar amb Bootstrap, mida fixa i object-fit per evitar deformacions #}
+                <img src="{{ user.avatar.url }}" 
+                     alt="Avatar de {{ user.username }}" 
+                     class="border border-secondary mb-3" 
+                     style="width:200px; height:200px; border-radius:17%;">
+            
+                {# Formulari per eliminar l'avatar actual amb botó petit i estil perillós #}
+                <form method="post" action="{% url 'users:remove_avatar' %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-outline-danger btn-sm">Eliminar avatar</button>
+                </form>
+            
+            </div>
+        {% endif %}
+
+        {# Formulari d'edició de perfil amb suport per a pujada de fitxers (avatar) #}
+        <form method="post" enctype="multipart/form-data">{% csrf_token %}
+            {{ form.as_p }}
+            {# Botó per desar els canvis, ocupa tot l'ample i marge inferior #}
+            <button class="btn btn-primary w-100 mb-2" type="submit">Guardar</button>
+        </form>
+
+    </div>
+{% endblock %}
