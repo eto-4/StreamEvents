@@ -7,12 +7,9 @@ from django.conf.urls.static import static    # Necessari per servir fitxers mul
 # Definició principal de les rutes del projecte
 urlpatterns = [
     # Ruta per accedir al panell d’administració de Django
-    path('admin/', admin.site.urls),
-
-    # Incloem totes les rutes definides dins de l’aplicació "users"
-    # El prefix buit ('') fa que siguin accessibles directament des de l’arrel del lloc web
-    # El namespace 'users' permet referir-nos a aquestes rutes des dels templates i vistes
     path('', include('users.urls', namespace='users')),
+    path('events/', include('events.urls', namespace='events')),
+    path('admin/', admin.site.urls)
 ]
 
 # Configuració addicional per servir fitxers multimèdia (imatges d’avatars, etc.)

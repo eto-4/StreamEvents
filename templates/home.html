@@ -13,11 +13,7 @@
 
         {# Si no està autenticat, oferim botons per iniciar sessió o registrar-se #}
         {% else %}
-            <p>
-                <a href="{% url 'users:login' %}" class="btn btn-primary">Inicia sessió</a> 
-                o 
-                <a href="{% url 'users:register' %}" class="btn btn-success">Registra't</a>
-            </p>
+            <h2></h2>
         {% endif %}
         
     </div>
