@@ -1,0 +1,287 @@
+[
+  {
+    "model": "events.Event",
+    "pk": 1,
+    "fields": {
+      "title": "Torneig de Fortnite",
+      "description": "Competició intensa amb els millors jugadors de la comunitat.",
+      "creator": 8,
+      "category": "gaming",
+      "scheduled_date": "2025-02-10T18:00:00Z",
+      "status": "scheduled",
+      "thumbnail": "",
+      "max_viewers": 200,
+      "is_featured": true,
+      "created_at": "2025-01-20T12:00:00Z",
+      "updated_at": "2025-01-20T12:00:00Z",
+      "tags": "fortnite, gaming, battle-royale",
+      "stream_url": "https://www.youtube.com/watch?v=AfzzMdZdqD0&pp=ygUTVG9ybmVpZyBkZSBGb3J0bml0ZQ%3D%3D"
+    }
+  },
+  {
+    "model": "events.Event",
+    "pk": 2,
+    "fields": {
+      "title": "Concert Acústic en Directe",
+      "description": "Una sessió íntima amb versions i temes propis.",
+      "creator": 9,
+      "category": "music",
+      "scheduled_date": "2025-02-12T20:30:00Z",
+      "status": "scheduled",
+      "thumbnail": "",
+      "max_viewers": 150,
+      "is_featured": false,
+      "created_at": "2025-01-16T09:30:00Z",
+      "updated_at": "2025-01-16T09:30:00Z",
+      "tags": "acústic, concert, música",
+      "stream_url": "https://www.youtube.com/watch?v=bquQVe4zLhQ&list=RDbquQVe4zLhQ&start_radio=1&pp=ygUbQ29uY2VydCBBY8O6c3RpYyBlbiBEaXJlY3RloAcB0gcJCQgKAYcqIYzv"
+    }
+  },
+  {
+    "model": "events.Event",
+    "pk": 3,
+    "fields": {
+      "title": "Debat sobre Intel·ligència Artificial",
+      "description": "Experts discuteixen el futur de la IA i les seves implicacions socials.",
+      "creator": 10,
+      "category": "technology",
+      "scheduled_date": "2025-02-08T17:00:00Z",
+      "status": "live",
+      "thumbnail": "",
+      "max_viewers": 500,
+      "is_featured": true,
+      "created_at": "2025-01-22T13:15:00Z",
+      "updated_at": "2025-01-22T13:15:00Z",
+      "tags": "IA, tecnologia, debat",
+      "stream_url": "https://www.twitch.tv/videos/1882355902"
+    }
+  },
+  {
+    "model": "events.Event",
+    "pk": 4,
+    "fields": {
+      "title": "Classe Magistral de Pintura",
+      "description": "Aprèn tècniques de pintura acrílica amb una artista reconeguda.",
+      "creator": 10,
+      "category": "art",
+      "scheduled_date": "2025-02-15T10:00:00Z",
+      "status": "scheduled",
+      "thumbnail": "",
+      "max_viewers": 80,
+      "is_featured": false,
+      "created_at": "2025-01-14T11:00:00Z",
+      "updated_at": "2025-01-14T11:00:00Z",
+      "tags": "pintura, art, creativitat",
+      "stream_url": "https://www.youtube.com/watch?v=aE6HHOvfHn0&pp=ygUbQ2xhc3NlIE1hZ2lzdHJhbCBkZSBQaW50dXJh"
+    }
+  },
+  {
+    "model": "events.Event",
+    "pk": 5,
+    "fields": {
+      "title": "Entrenament Funcional Intensiu",
+      "description": "Sessió d'esport per posar-se en forma amb una rutina explosiva.",
+      "creator": 10,
+      "category": "sports",
+      "scheduled_date": "2025-02-11T07:00:00Z",
+      "status": "finished",
+      "thumbnail": "",
+      "max_viewers": 300,
+      "is_featured": false,
+      "created_at": "2025-01-10T08:00:00Z",
+      "updated_at": "2025-01-10T08:00:00Z",
+      "tags": "fitness, esport, salut",
+      "stream_url": "https://www.twitch.tv/evalangwin247"
+    }
+  },
+  {
+    "model": "events.Event",
+    "pk": 6,
+    "fields": {
+      "title": "Xerrada Motivacional: Troba el Teu Propòsit",
+      "description": "Una sessió inspiradora per ajudar-te a definir objectius reals.",
+      "creator": 10,
+      "category": "talk",
+      "scheduled_date": "2025-02-20T19:00:00Z",
+      "status": "scheduled",
+      "thumbnail": "",
+      "max_viewers": 250,
+      "is_featured": true,
+      "created_at": "2025-01-12T10:00:00Z",
+      "updated_at": "2025-01-12T10:00:00Z",
+      "tags": "motivació, desenvolupament personal",
+      "stream_url": "https://www.youtube.com/watch?v=u_lj7Ux1eKE&pp=ygUsWGVycmFkYSBNb3RpdmFjaW9uYWw6IFRyb2JhIGVsIFRldSBQcm9ww7JzaXTSBwkJCAoBhyohjO8%3D"
+    }
+  },
+  {
+    "model": "events.Event",
+    "pk": 7,
+    "fields": {
+      "title": "Masterclass de Python",
+      "description": "Aprèn Python des de zero amb exemples realistes.",
+      "creator": 9,
+      "category": "education",
+      "scheduled_date": "2025-02-18T16:00:00Z",
+      "status": "live",
+      "thumbnail": "",
+      "max_viewers": 400,
+      "is_featured": false,
+      "created_at": "2025-01-05T15:00:00Z",
+      "updated_at": "2025-01-05T15:00:00Z",
+      "tags": "python, programació, educació",
+      "stream_url": "https://www.youtube.com/watch?v=BRGZiD5RJrU&pp=ygUVTWFzdGVyY2xhc3MgZGUgUHl0aG9u0gcJCQgKAYcqIYzv"
+    }
+},
+  {
+    "model": "events.Event",
+    "pk": 8,
+    "fields": {        
+      "title": "'Just Chatting' Tranquil·lament",
+      "description": "Una sessió relaxant responent preguntes de l'audiència.",
+      "creator": 8,
+      "category": "talk",
+      "scheduled_date": "2025-02-25T21:00:00Z",
+      "status": "scheduled",
+      "thumbnail": "",
+      "max_viewers": 120,
+      "is_featured": false,
+      "created_at": "2025-01-27T14:20:00Z",
+      "updated_at": "2025-01-27T14:20:00Z",
+      "tags": "xerrada, comunitat",
+      "stream_url": "https://www.twitch.tv/elxokas"
+    }
+  },
+  {
+    "model": "events.Event",
+    "pk": 9,
+    "fields": {
+      "title": "Demo de Videojoc Indie",
+      "description": "Mostra exclusiva d'un nou videojoc creat per desenvolupadors locals.",
+      "creator": 8,
+      "category": "entertainment",
+      "scheduled_date": "2025-03-01T19:00:00Z",
+      "status": "scheduled",
+      "thumbnail": "",
+      "max_viewers": 500,
+      "is_featured": true,
+      "created_at": "2025-01-18T10:40:00Z",
+      "updated_at": "2025-01-18T10:40:00Z",
+      "tags": "indie, videojoc, demo",
+      "stream_url": "https://www.youtube.com/watch?v=SmJXsnDCk38&pp=ygUWRGVtbyBkZSBWaWRlb2pvYyBJbmRpZQ%3D%3D"
+    }
+  },
+  {
+    "model": "events.Event",
+    "pk": 10,
+    "fields": {
+      "title": "Taller de Cuina Asiàtica",
+      "description": "Aprèn a cuinar plats tradicionals d’Àsia.",
+      "creator": 10,
+      "category": "other",
+      "scheduled_date": "2025-02-22T12:00:00Z",
+      "status": "scheduled",
+      "thumbnail": "",
+      "max_viewers": 90,
+      "is_featured": false,
+      "created_at": "2025-01-19T09:00:00Z",
+      "updated_at": "2025-01-19T09:00:00Z",
+      "tags": "cuina, food, asiàtic",
+      "stream_url": "https://www.youtube.com/watch?v=vNBqQg3Hj-A&pp=ygUZVGFsbGVyIGRlIEN1aW5hIEFzacOgdGljYQ%3D%3D"
+    }
+  },
+  {
+    "model": "events.Event",
+    "pk": 11,
+    "fields": {
+      "title": "Showcase de Música Electrònica",
+      "description": "DJ locals presenten una sessió única de música electrònica.",
+      "creator": 9,
+      "category": "music",
+      "scheduled_date": "2025-03-05T23:00:00Z",
+      "status": "scheduled",
+      "thumbnail": "",
+      "max_viewers": 350,
+      "is_featured": true,
+      "created_at": "2025-01-25T15:00:00Z",
+      "updated_at": "2025-01-25T15:00:00Z",
+      "tags": "dj, electrònica, música",
+      "stream_url": "https://www.youtube.com/watch?v=NIGhz0ZtNWc&pp=ygUgU2hvd2Nhc2UgZGUgTcO6c2ljYSBFbGVjdHLDsm5pY2E%3D"
+    }
+  },
+  {
+    "model": "events.Event",
+    "pk": 12,
+    "fields": {
+      "title": "Marató de Gaming Retro",
+      "description": "24 hores jugant a clàssics dels videojocs.",
+      "creator": 8,
+      "category": "gaming",
+      "scheduled_date": "2025-03-10T12:00:00Z",
+      "status": "scheduled",
+      "thumbnail": "",
+      "max_viewers": 600,
+      "is_featured": false,
+      "created_at": "2025-01-28T17:30:00Z",
+      "updated_at": "2025-01-28T17:30:00Z",
+      "tags": "retro, gaming, clàssics",
+      "stream_url": "https://www.youtube.com/watch?v=8M3Z85q1EdA&pp=ygUbUExheWluZyByZXRybyBnYW1lcyAyNGhvdXJz"
+    }
+  },
+  {
+    "model": "events.Event",
+    "pk": 13,
+    "fields": {
+      "title": "Sessió d’Escultura Avançada",
+      "description": "Aprèn tècniques avançades per crear figures realistes.",
+      "creator": 3,
+      "category": "art",
+      "scheduled_date": "2025-03-03T14:00:00Z",
+      "status": "scheduled",
+      "thumbnail": "",
+      "max_viewers": 70,
+      "is_featured": false,
+      "created_at": "2025-01-22T08:50:00Z",
+      "updated_at": "2025-01-22T08:50:00Z",
+      "tags": "escultura, art",
+      "stream_url": "https://www.youtube.com/watch?v=fSEEispKmhg&pp=ygUfU2Vzc2nDsyBk4oCZRXNjdWx0dXJhIEF2YW7Dp2FkYQ%3D%3D"
+    }
+  },
+  {
+    "model": "events.Event",
+    "pk": 14,
+    "fields": {
+      "title": "Introducció al Machine Learning",
+      "description": "Tallers pràctics per entendre els conceptes bàsics del ML.",
+      "creator": 10,
+      "category": "education",
+      "scheduled_date": "2025-03-15T16:00:00Z",
+      "status": "scheduled",
+      "thumbnail": "",
+      "max_viewers": 500,
+      "is_featured": true,
+      "created_at": "2025-01-29T11:15:00Z",
+      "updated_at": "2025-01-29T11:15:00Z",
+      "tags": "machine learning, IA, educació",
+      "stream_url": "https://www.youtube.com/watch?v=xrQ1YH0PnrM&pp=ygUgSW50cm9kdWNjacOzIGFsIE1hY2hpbmUgTGVhcm5pbmc%3D"
+    }
+  },
+  {
+    "model": "events.Event",
+    "pk":15,
+    "fields": {
+      "title": "Partida de Chess Blitz",
+      "description": "Partides ràpides amb comentaris en directe.",
+      "creator": 8,
+      "category": "entertainment",
+      "scheduled_date": "2025-02-28T18:00:00Z",
+      "status": "finished",
+      "thumbnail": "",
+      "max_viewers": 180,
+      "is_featured": false,
+      "created_at": "2025-01-17T16:10:00Z",
+      "updated_at": "2025-01-17T16:10:00Z",
+      "tags": "escacs, blitz, comentaris",
+      "stream_url": "https://www.twitch.tv/videos/2591647779"
+    }
+  }
+]
