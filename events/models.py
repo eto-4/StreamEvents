@@ -46,23 +46,53 @@ class Event(models.Model):
     # -------------------------
     # Camps del Model
     # -------------------------
-    title = models.CharField(max_length=200)
-    description = models.TextField()
+    title = models.CharField(
+        max_length=200
+    )
+    description = models.TextField(
+    )
     creator = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
         related_name='events'
     )
-    category = models.CharField(max_length=50, choices=CATEGORY_CHOICES)
-    scheduled_date = models.DateTimeField()
-    status = models.CharField(max_length=20, choices=STATUS_CHOICES)
-    thumbnail = models.ImageField(upload_to='events/thumbnails/', blank=True, null=True)
-    max_viewers = models.PositiveIntegerField(default=100)
-    is_featured = models.BooleanField(default=False)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-    tags = models.CharField(max_length=500, blank=True, null=True)
-    stream_url = models.URLField(max_length=500, blank=True, null=True)
+    category = models.CharField(
+        max_length=50, 
+        choices=CATEGORY_CHOICES
+    )
+    scheduled_date = models.DateTimeField(
+    )
+    status = models.CharField(
+        max_length=20, 
+        choices=STATUS_CHOICES
+    )
+    thumbnail = models.ImageField(
+        upload_to='events/thumbnails/', 
+        blank=True, 
+        null=True
+    )
+    max_viewers = models.PositiveIntegerField(
+        default=100,
+    )
+    is_featured = models.BooleanField(
+        default=False
+    )
+    created_at = models.DateTimeField(
+        auto_now_add=True
+    )
+    updated_at = models.DateTimeField(
+        auto_now=True
+    )
+    tags = models.CharField(
+        max_length=500, 
+        blank=True, 
+        null=True
+    )
+    stream_url = models.URLField(
+        max_length=500, 
+        blank=True, 
+        null=True
+    )
 
     # -------------------------
     # Configuració

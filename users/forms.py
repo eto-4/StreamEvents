@@ -121,8 +121,14 @@ class CustomUserUpdateForm(forms.ModelForm):
         * bio: Textarea
         * avatar: ImageField + FileInput
     """
-    bio = forms.CharField(widget=forms.Textarea(attrs={'rows': 4}), required=False)
-    avatar = forms.ImageField(widget=forms.FileInput, required=False)
+    bio = forms.CharField(
+        widget=forms.Textarea(attrs={'rows': 4}),
+        required=False
+    )
+    avatar = forms.ImageField(
+        widget=forms.FileInput, 
+        required=False
+    )
 
     class Meta:
         model = User
