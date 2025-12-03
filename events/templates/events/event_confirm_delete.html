@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}Eliminar {{ event.title }} | StreamEvents{% endblock %}
+
+{% block content %}
+<div class="container text-center py-5">
+    <h1>Eliminar Esdeveniment</h1>
+    <p class="lead">Estàs segur que vols eliminar l'esdeveniment <strong>{{ event.title }}</strong>?</p>
+
+    <form method="POST">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger me-2">Sí, eliminar</button>
+        <a href="{% url 'events:event_detail' event.pk %}" class="btn btn-secondary">Cancel·lar</a>
+    </form>
+</div>
+{% endblock %}

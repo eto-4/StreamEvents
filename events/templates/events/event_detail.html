@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block title %}{{ event.title }} | StreamEvents{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="mb-4">{{ event.title }}</h1>
+
+    <!-- Thumbnail gran -->
+    {% if event.thumbnail %}
+        <div class="text-center mb-4">
+            <img src="{{ event.thumbnail.url }}" class="img-fluid rounded" alt="{{ event.title }}">
+        </div>
+    {% endif %}
+
+    <!-- Informació de l'esdeveniment -->
+    <div class="mb-4">
+        <p><strong>Categoria:</strong> {{ event.get_category_display }}</p>
+        <p><strong>Data programada:</strong> {{ event.scheduled_date|date:"d/m/Y H:i" }}</p>
+        <p><strong>Estat:</strong> {{ event.get_status_display }}</p>
+        <p><strong>Max. espectadors:</strong> {{ event.max_viewers }}</p>
+        <p><strong>Etiquetes:</strong>
+            {% for tag in event.get_tags_list %}
+                <span class="badge bg-secondary">{{ tag }}</span>
+            {% empty %}
+                Cap etiqueta
+            {% endfor %}
+        </p>
+        <p><strong>Creador:</strong> {{ event.creator.username }}</p>
+    </div>
+
+    <!-- Descripció -->
+    <div class="mb-4">
+        <h4>Descripció</h4>
+        <p>{{ event.description|linebreaks }}</p>
+    </div>
+
+    <!-- Vídeo embed si existeix stream_url -->
+    {% if event.stream_url %}
+        <div class="mb-4 ratio ratio-16x9">
+            <iframe src="{{ event.get_stream_embed_url }}" title="{{ event.title }}" allowfullscreen></iframe>
+        </div>
+    {% endif %}
+
+    <!-- Botons d'edició/eliminació si l'usuari és el creador -->
+    {% if is_creator %}
+        <div class="mb-4">
+            <a href="{% url 'events:event_update' event.pk %}" class="btn btn-primary me-2">Editar</a>
+            <a href="{% url 'events:event_delete' event.pk %}" class="btn btn-danger">Eliminar</a>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

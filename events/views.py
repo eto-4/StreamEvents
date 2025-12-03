@@ -258,7 +258,11 @@ def my_events_view(request):
     context = {
         'events': page_obj
     }
-    return render(request, 'events/my_events.html', context)
+    return render(
+        request, 
+        'events/my_events.html', 
+        context
+    )
 
 # ===========================================
 # 5.7 Vista d'Esdeveniments per Categoria
@@ -288,7 +292,7 @@ def events_by_category_view(request, category):
         'category': category
     }
     return render(
-        request, 
-        'events/event_list.html', 
+        request,
+        'events/event_list.html',
         context
     )

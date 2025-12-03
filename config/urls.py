@@ -7,8 +7,8 @@ from django.conf.urls.static import static    # Necessari per servir fitxers mul
 # Definició principal de les rutes del projecte
 urlpatterns = [
     # Ruta per accedir al panell d’administració de Django
-    path('', include('users.urls', namespace='users')),
-    path('events/', include('events.urls', namespace='events')),
+    path('', include('events.urls', namespace='events')),
+    path('users/', include('users.urls', namespace='users')),
     path('admin/', admin.site.urls)
 ]
 

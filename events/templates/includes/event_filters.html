@@ -1,0 +1,18 @@
+{# Formulari de cerca i filtratge d'esdeveniments #}
+<form method="get" class="mb-4">
+    <div class="row g-2">
+        {% for field in form %}
+            <div class="col-md-3">
+                {{ field.label_tag }}
+                {{ field }}
+                {% if field.errors %}
+                    <div class="text-danger small">{{ field.errors }}</div>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+    <div class="mt-2">
+        <button type="submit" class="btn btn-primary">Filtrar</button>
+        <a href="{% url 'events:event_list' %}" class="btn btn-secondary">Reset</a>
+    </div>
+</form>
