@@ -8,14 +8,17 @@
     <div class="text-center">
 
         {# Si l'usuari està autenticat, mostrem un missatge de benvinguda personalitzat #}
-        {% if user.is_authenticated %}
-            <p>Hola, <strong>{{ user.username }}</strong> 👋😊</p>
-
+        {% if !user.is_authenticated %}
+            
+            <h2>Hola! Benvolgut a la nostra pàgina de StreamEvents</h2>
+            
         {# Si no està autenticat, oferim botons per iniciar sessió o registrar-se #}
         {% else %}
-            <h2></h2>
+            
         {% endif %}
         
     </div>
 {% endblock %}
+
+
 

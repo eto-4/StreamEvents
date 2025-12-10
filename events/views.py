@@ -14,7 +14,6 @@ def event_list_view(request):
     Mostra tots els esdeveniments amb paginació, cerca i filtres.
     Els esdeveniments destacats apareixen al principi.
     """
-    
     # Ordenats per més recents
     events = Event.objects.all().order_by('-created_at')
     

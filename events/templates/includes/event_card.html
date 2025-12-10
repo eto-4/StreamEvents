@@ -1,17 +1,42 @@
-{# Card per mostrar un esdeveniment de manera compacta #}
+{# Card compacta y profesional para un evento #}
 {% load static %}
-<div class="card h-100 shadow-sm">
+<div class="card h-100 event-card">
+
+    {# Imatge de l'esdeveniment #}
+    <a href="{% url 'events:event_detail' event.pk %}" class="event-img-wrapper">
+        <img src="{% if event.thumbnail %}{{ event.thumbnail.url }}{% else %}{% static 'thumbnails/default_image.png' %}{% endif %}" 
+             class="card-img-top event-img" 
+             alt="{{ event.title }}">
+    </a>
+
 
     <div class="card-body d-flex flex-column">
-        <img src="{% if event.thumbnail %}{{ event.thumbnail.url }}{% else %}{% static 'thumbnails/default_image.png' %}{% endif %}" 
-             class="card-img-top mb-1" 
-         alt="{{ event.title }}">    
-        <h5 class="card-title mb-1">{{ event.title }}</h5>
-        <p class="card-text mb-1"><small class="text-muted">{{ event.category }}</small></p>
-        <p class="card-text mb-1"><small class="text-muted">{{ event.scheduled_date|date:"d/m/Y H:i" }}</small></p>
-        <p class="card-text mb-2">
-            <span class="badge bg-success">{{ event.get_status_display }}</span>
+
+        {# Títol com enllaç principal #}
+        <h5 class="card-title mb-1">
+            <a href="{% url 'events:event_detail' event.pk %}" class="text-decoration-none text-dark">
+                {{ event.title }}
+            </a>
+        </h5>
+
+        {# Categoría y Data #}
+        <p class="card-text mb-1">
+            <small class="text-muted">{{ event.category }}</small>
         </p>
-        <a href="{% url 'events:event_detail' event.pk %}" class="btn btn-outline-primary mt-auto">Veure</a>
+        <p class="card-text mb-2">
+            <small class="text-muted">{{ event.scheduled_date|date:"d/m/Y H:i" }}</small>
+        </p>
+
+        {# Estat con badge #}
+        <p class="mt-auto">
+            <span class="badge 
+                {% if event.status == 'active' %}bg-success
+                {% elif event.status == 'cancelled' %}bg-danger
+                {% elif event.status == 'draft' %}bg-secondary
+                {% else %}bg-info{% endif %}">
+                {{ event.get_status_display }}
+            </span>
+        </p>
+
     </div>
 </div>

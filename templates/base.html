@@ -17,52 +17,116 @@
 
         {# Estils interns per a la disposició general de la pàgina #}
         <style>
-            /* Defineix que el cos ocupa tota l'altura i organitza columnes verticals */
-            body {
-              display: flex;
-              flex-direction: column;
-              min-height: 100vh;
-            }
+          /* Defineix que el cos ocupa tota l'altura i organitza columnes verticals */
+          body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+          }
 
-            /* Main ocupa tot l'espai restant entre navbar i footer */
-            main {
-              flex: 1;
-            }
+          /* Main ocupa tot l'espai restant entre navbar i footer */
+          main {
+            flex: 1;
+          }
 
-            /* Centrat de tots els títols i marge inferior consistent */
-            h1, h2, h3 {
-              text-align: center;
-              margin-bottom: 1.5rem;
-            }
+          /* Centrat de tots els títols i marge inferior consistent */
+          h1, h2, h3 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+          }
 
-            /* Estils per al footer: fons fosc, text clar, sempre a la part inferior */
-            footer {
-              background-color: #212529;
-              color: #ddd;
-              position: relative;
-              bottom: 0;
-              width: 100%;
-            }
+          /* Estils per al footer: fons fosc, text clar, sempre a la part inferior */
+          footer {
+            background-color: #212529;
+            color: #ddd;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+          }
 
-            /* Color lleugerament més clar per a textos petits del footer */
-            footer small {
-              color: #bbb;
-            }
+          /* Color lleugerament més clar per a textos petits del footer */
+          footer small {
+            color: #bbb;
+          }
 
-            /* Hace el botón de usuario más ancho y visible */
-            .user-btn {
-              transition: background-color 0.3s ease, transform 0.2s ease;
-            }
-            .user-btn:hover {
+          /* Hace el botón de usuario más ancho y visible */
+          .user-btn {
+            transition: background-color 0.3s ease, transform 0.2s ease;
+          }
+          .user-btn:hover {
+            background-color: #2b2b2b;
+            transform: scale(1.02);
+          }
+          .dropdown-menu {
+            min-width: 200px;
+          }
+          .dropdown-item:hover {
+            background-color: #f1f1f1;
+          }
+          /* Fondo oscuro para los filtros */
+          #filters-block {
               background-color: #2b2b2b;
-              transform: scale(1.02);
-            }
-            .dropdown-menu {
-              min-width: 200px;
-            }
-            .dropdown-item:hover {
-              background-color: #f1f1f1;
-            }
+          }
+          
+          /* Inputs oscuros si los quieres así */
+          #filters-block select,
+          #filters-block input[type="date"],
+          .search-bar input {
+              background-color: #212529 !important;
+              color: #fff !important;
+              border: 1px solid #444 !important;
+          }
+          ::placeholder {
+              color: #fff !important;
+              opacity: 1; /* Necesario en algunos navegadores */
+          }
+          
+          #filters-block,
+          #form-actions {
+              display: none;
+          }
+          /* Tarjeta de evento con box-shadow profesional */
+          .event-card {
+              border-radius: 0.5rem; /* redondeado */
+              overflow: hidden;      /* importante para que la sombra se vea correctamente */
+              transition: transform 0.2s ease, box-shadow 0.3s ease;
+              box-shadow: 0 2px 8px rgba(47, 27, 225, 0.5); /* sombra inicial */
+          }
+
+          .event-card:hover {
+              transform: translateY(-4px); /* levanta la tarjeta */
+              box-shadow: 0 12px 24px rgba(111, 20, 222, 0.5); /* sombra más marcada */
+          }
+
+          /* Imagen de la tarjeta con bordes superiores redondeados */
+          .event-card img.card-img-top {
+              border-radius: 0.5rem 0.5rem 0 0;
+              display: block;
+              width: 100%;
+              height: auto;
+          }
+          /* Contenedor de la imagen: fondo blanco y centrado */
+          .event-img-wrapper {
+              display: flex;
+              align-items: center;      /* centra verticalmente */
+              justify-content: center;  /* centra horizontalmente */
+              background-color: #fff;   /* fondo blanco */
+              max-width: 300px;
+              max-height: 200px;
+              margin: 0 auto;           /* centrar dentro de la tarjeta */
+              overflow: hidden;
+              border-radius: 0.5rem 0.5rem 0 0; /* opcional, mismo que la card */
+          }
+          
+          /* Imagen dentro del contenedor */
+          .event-img {
+              display: block;
+              max-width: 100%;
+              max-height: 100%;
+              width: auto;
+              height: auto;
+          }
+
         </style>
     </head>
 
@@ -83,5 +147,35 @@
 
         {# Script de Bootstrap per a funcionalitats interactives #}
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+              
+                const searchBar = document.getElementById('search-bar');
+                const searchInput = document.querySelector('.search-bar input');
+                const filters = document.getElementById('filters-block');
+                const actions = document.getElementById('form-actions');
+                const form = document.getElementById('search-form');
+
+                // Mostrar al hacer focus en la barra de búsqueda
+                searchInput.addEventListener('focus', () => {
+                    filters.style.display = "block";
+                    actions.style.display = "flex";
+                    searchBar.style.marginBottom = '15px';
+                });
+            
+                // Detectar click fuera del formulario para ocultar filtros + botones
+                document.addEventListener('click', (e) => {
+                    const clickedInside = form.contains(e.target);
+                
+                    if (!clickedInside) {
+                        filters.style.display = "none";
+                        actions.style.display = "none";
+                        searchBar.style.marginBottom = '0px';
+                    }
+                });
+            
+            });
+        </script>
+
     </body>
 </html>
