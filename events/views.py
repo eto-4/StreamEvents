@@ -76,7 +76,6 @@ def event_list_view(request):
 # ===========================================
 # 5.2 Vista de Detall d'Esdeveniment
 # ===========================================
-
 def event_detail_view(request, pk):
     """
     Mostra informació completa d'un esdeveniment.
@@ -150,6 +149,8 @@ def event_update_view(request, pk):
     Gestiona permisos i errors amb missatges.
     """
     event = get_object_or_404(Event, pk=pk)
+    print(event.creator, request.user)
+    
     if event.creator != request.user:
         messages.error(
             request,
@@ -176,10 +177,12 @@ def event_update_view(request, pk):
                 'events:event_detail',
                 pk=event.pk
             )
+        if not form.is_valid():
+            print(form.errors)
         else:
             messages.error(
                 request,
-                'Si us plau, revisa els errors del formulari.'
+                'Si us plau, revisa els errors del formulari d\'edició.'
             )
     else:
         form = EventUpdateForm(
@@ -234,34 +237,41 @@ def event_delete_view(request, pk):
 # ===========================================
 @login_required
 def my_events_view(request):
-    """
-    Mostra només els esdeveniments creats per l'usuari actual.
-    Inclou filtres per estat i opcions ràpides d'edició.
-    """
-    events = Event.objects.filter(
-        creator=request.user
-    ).order_by(
-        '-created_at'
-    )
-    
-    # Filtres ràpids per estat
-    status_filter = request.GET.get('status')
-    if status_filter and status_filter != 'all':
-        events = events.filter(status=status_filter)
-    
-    # Paginació (12 per pàgina)
+    events = Event.objects.filter(creator=request.user).order_by('-created_at')
+
+    form = EventSearchForm(request.GET or None)
+
+    if form.is_valid():
+        data = form.cleaned_data
+        search = data.get('search')
+        if search:
+            events = events.filter(title__icontains=search)
+        category = data.get('category')
+        if category and category != 'all':
+            events = events.filter(category=category)
+        status = data.get('status')
+        if status and status != 'all':
+            events = events.filter(status=status)
+        date_from = data.get('date_from')
+        if date_from:
+            events = events.filter(scheduled_date__gte=date_from)
+        date_to = data.get('date_to')
+        if date_to:
+            events = events.filter(scheduled_date__lte=date_to)
+
+    events = events.order_by('-is_featured', '-created_at')
+
     paginator = Paginator(events, 12)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
-    
+
     context = {
-        'events': page_obj
+        'events': page_obj,
+        'form': form,
     }
-    return render(
-        request, 
-        'events/my_events.html', 
-        context
-    )
+
+    return render(request, 'events/my_events.html', context)
+
 
 # ===========================================
 # 5.7 Vista d'Esdeveniments per Categoria

@@ -2,8 +2,8 @@
 
     <div class=" search-bar" id="search-bar">
         {{ form.search }}
-        {% if form.search.errors %}
-            <div class="text-danger small">{{ form.search.errors }}</div>
+            {% if form.search.errors %}
+                <div class="text-danger small">{{ form.search.errors }}</div>
         {% endif %}
     </div>
 

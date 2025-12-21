@@ -19,20 +19,51 @@ class EventCreationForm(forms.ModelForm):
         model = Event
         fields = [
             'title', 'description', 'category', 'scheduled_date',
-            'thumbnail', 'max_viewers', 'tags', 'stream_url',
+            'thumbnail', 'max_viewers', 'tags', 'stream_url', 'status'
         ]
         widgets = {
+            # Àrea de text per al títol
+            'title': forms.Textarea(
+              attrs={
+                  'rows': 1,
+                  'class': 'form-control',
+                  'placeholder': 'Entra un títol per al teu esdeveniment'
+              }  
+            ),
             # Àrea de text per a la descripció
             'description': forms.Textarea(
-                attrs={'rows': 4, 'class': 'form-control'}
+                attrs={
+                    'rows': 4, 
+                    'class': 'form-control', 
+                    'placeholder': 'De qué tracta aquest esdeveniment?'
+                }
             ),
             # DateTimeInput amb atributs HTML5
             'scheduled_date': forms.DateTimeInput(
-                attrs={'type': 'datetime-local', 'class': 'form-control'}
+                attrs={
+                    'type': 'datetime-local', 
+                    'class': 'form-control'
+                }
             ),
             # Camp de pujada d'arxius amb estils Bootstrap
             'thumbnail': forms.ClearableFileInput(
-                attrs={'class': 'form-control-file'}
+                attrs={
+                    'class': 'form-control-file'
+                }
+            ),
+            'tags': forms.Textarea(
+                attrs={                    
+                    'rows': 2,
+                    'class': 'form-control',
+                    'placeholder': 'Separa els teus tags amb comes \',\'; p.ex: Tag1, Tag2, Tag3...'
+                }
+            ),
+            'stream_url': forms.Textarea(
+                attrs={                    
+                    'rows': 1,
+                    'class': 'form-control',
+                    'placeholder': 'Entra l\'enllaç cap a l\'esdeveniment'
+                }
             )
         }
     
@@ -93,14 +124,48 @@ class EventUpdateForm(forms.ModelForm):
             'thumbnail', 'max_viewers', 'tags', 'stream_url', 'status'
         ]
         widgets = {
+            # Àrea de text per al títol
+            'title': forms.Textarea(
+              attrs={
+                  'rows': 1,
+                  'class': 'form-control',
+                  'placeholder': 'Entra un títol per al teu esdeveniment'
+              }  
+            ),
+            # Àrea de text per a la descripció
             'description': forms.Textarea(
-                attrs={'rows': 4, 'class': 'form-control'}
+                attrs={
+                    'rows': 4, 
+                    'class': 'form-control', 
+                    'placeholder': 'De qué tracta aquest esdeveniment?'
+                }
             ),
+            # DateTimeInput amb atributs HTML5
             'scheduled_date': forms.DateTimeInput(
-                attrs={'type': 'datetime_local', 'class': 'form-control'}
+                attrs={
+                    'type': 'datetime-local', 
+                    'class': 'form-control'
+                }
             ),
+            # Camp de pujada d'arxius amb estils Bootstrap
             'thumbnail': forms.ClearableFileInput(
-                attrs={'class': 'form-control-file'}
+                attrs={
+                    'class': 'form-control-file'
+                }
+            ),
+            'tags': forms.Textarea(
+                attrs={                    
+                    'rows': 2,
+                    'class': 'form-control',
+                    'placeholder': 'Separa els teus tags amb comes \',\'; p.ex: Tag1, Tag2, Tag3...'
+                }
+            ),
+            'stream_url': forms.Textarea(
+                attrs={                    
+                    'rows': 1,
+                    'class': 'form-control',
+                    'placeholder': 'Entra l\'enllaç cap a l\'esdeveniment'
+                }
             )
         }
     
@@ -110,6 +175,7 @@ class EventUpdateForm(forms.ModelForm):
         """
         self.user = kwargs.pop('user', None)
         super().__init__(*args, **kwargs)
+
     
     def clean_status(self):
         """
@@ -159,13 +225,21 @@ class EventSearchForm(forms.Form):
     category = forms.ChoiceField(
         choices=CATEGORY_CHOICES,
         required=False,
-        widget=forms.Select(attrs={'class': 'form-select'})
+        widget=forms.Select(
+            attrs={
+                'class': 'form-select'
+            }
+        )
     )
     
     status = forms.ChoiceField(
         choices=STATUS_CHOICES,
         required=False,
-        widget=forms.Select(attrs={'class': 'form-select'})
+        widget=forms.Select(
+            attrs={
+                'class': 'form-select'
+            }
+        )
     )
     
     date_from = forms.DateField(
