@@ -1,5 +1,5 @@
 from django.http import JsonResponse
-from django.shortcuts import get_list_or_404
+from django.shortcuts import get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST
 from events.models import Event
@@ -10,7 +10,7 @@ from .forms import ChatMessageForm
 @login_required
 @require_POST
 def chat_send_message(request, event_pk):
-    event = get_list_or_404(Event, pk=event_pk)
+    event = get_object_or_404(Event, pk=event_pk)
     
     if event.status != 'live':
         return JsonResponse({
@@ -45,7 +45,7 @@ def chat_send_message(request, event_pk):
 
 # Carregar missatges
 def chat_load_messages(request, event_pk):
-    event = get_list_or_404(Event, pk=event_pk)
+    event = get_object_or_404(Event, pk=event_pk)
     
     messages = ChatMessage.objects.filter(
         event=event,
@@ -65,14 +65,14 @@ def chat_load_messages(request, event_pk):
         })
     
     return JsonResponse({
-        messages: data
+        'messages': data
     })
     
 # Eliminar missatge
 @login_required
 @require_POST
 def chat_delete_message(request, message_pk):
-    msg = get_list_or_404(ChatMessage, pk=message_pk)
+    msg = get_object_or_404(ChatMessage, pk=message_pk)
     
     if not msg.can_delete(request.user):
         return JsonResponse({'success': False,'error': 'Sense permisos'})
