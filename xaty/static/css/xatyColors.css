@@ -1,0 +1,15 @@
+/* ─── Variables ─────────────────────────────────────────────── */
+:root {
+    --chat-bg: #1a1a2e;
+    --chat-header-bg: #16213e;
+    --chat-message-bg: #0f3460;
+    --chat-message-hover: #1a4a7a;
+    --chat-highlighted-bg: #3a3000;
+    --chat-highlighted-border: #ffc107;
+    --chat-form-bg: #16213e;
+    --chat-border: #2a2a4a;
+    --chat-text: #e0e0e0;
+    --chat-text-muted: #888;
+    --chat-scrollbar: #2a2a4a;
+    --chat-scrollbar-thumb: #4a4a8a;
+}
