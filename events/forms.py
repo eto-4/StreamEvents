@@ -11,42 +11,78 @@ class EventCreationForm(forms.ModelForm):
     """
     Formulari per a la creació d'esdeveniments.
     
-    Basat en ModelForm, genera automàticament camps segons el model Event.
-    Inclou validacions personalitzades per títol, data programada i espectadors.
+    Basat en ModelForm, genera automàticament els camps segons el model Event.
+    Inclou validacions personalitzades per assegurar:
+      - títols únics per usuari,
+      - dates no anteriors al present,
+      - nombre d'espectadors dins dels límits establerts.
     """
 
     class Meta:
         model = Event
         fields = [
             'title', 'description', 'category', 'scheduled_date',
-            'thumbnail', 'max_viewers', 'tags', 'stream_url',
+            'thumbnail', 'max_viewers', 'tags', 'stream_url', 'status'
         ]
         widgets = {
-            # Àrea de text per a la descripció
+            # Àrea de text per al títol amb placeholder i estil Bootstrap
+            'title': forms.Textarea(
+              attrs={
+                  'rows': 1,
+                  'class': 'form-control',
+                  'placeholder': 'Entra un títol per al teu esdeveniment'
+              }  
+            ),
+            # Àrea de text per a la descripció amb placeholder
             'description': forms.Textarea(
-                attrs={'rows': 4, 'class': 'form-control'}
+                attrs={
+                    'rows': 4, 
+                    'class': 'form-control', 
+                    'placeholder': 'De qué tracta aquest esdeveniment?'
+                }
             ),
-            # DateTimeInput amb atributs HTML5
+            # Camp de data i hora amb suport HTML5
             'scheduled_date': forms.DateTimeInput(
-                attrs={'type': 'datetime-local', 'class': 'form-control'}
+                attrs={
+                    'type': 'datetime-local', 
+                    'class': 'form-control'
+                }
             ),
-            # Camp de pujada d'arxius amb estils Bootstrap
+            # Camp de pujada d'arxius amb estil Bootstrap
             'thumbnail': forms.ClearableFileInput(
-                attrs={'class': 'form-control-file'}
+                attrs={
+                    'class': 'form-control-file'
+                }
+            ),
+            # Tags com a textarea amb placeholder explicatiu
+            'tags': forms.Textarea(
+                attrs={                    
+                    'rows': 2,
+                    'class': 'form-control',
+                    'placeholder': 'Separa els teus tags amb comes \',\'; p.ex: Tag1, Tag2, Tag3...'
+                }
+            ),
+            # URL del stream amb textarea
+            'stream_url': forms.Textarea(
+                attrs={                    
+                    'rows': 1,
+                    'class': 'form-control',
+                    'placeholder': 'Entra l\'enllaç cap a l\'esdeveniment'
+                }
             )
         }
     
     def __init__(self, *args, **kwargs):
         """
         Desa l'usuari que està creant l'esdeveniment.
-        S'extreu del kwargs per a poder validar títols únics per usuari.
+        Permet validar camps depenent de l'usuari (p.ex. títols únics).
         """
         self.user = kwargs.pop('user', None)
         super().__init__(*args, **kwargs)
     
     def clean_scheduled_date(self):
         """
-        Validació: la data no pot ser en el passat.
+        Validació: la data programada no pot ser en el passat.
         """
         scheduled_date = self.cleaned_data['scheduled_date']
         if scheduled_date < timezone.now():
@@ -82,8 +118,9 @@ class EventUpdateForm(forms.ModelForm):
     """
     Formulari per actualitzar esdeveniments existents.
     
-    Inclou validació per impedir canviar l'estat si no ets el creador,
-    i impedeix modificar la data si l'esdeveniment ja és en directe.
+    Inclou validacions per assegurar:
+      - només el creador pot canviar l'estat,
+      - la data no es pot modificar si l'esdeveniment ja està en directe.
     """
 
     class Meta:
@@ -93,27 +130,65 @@ class EventUpdateForm(forms.ModelForm):
             'thumbnail', 'max_viewers', 'tags', 'stream_url', 'status'
         ]
         widgets = {
+            # Àrea de text per al títol
+            'title': forms.Textarea(
+              attrs={
+                  'rows': 1,
+                  'class': 'form-control',
+                  'placeholder': 'Entra un títol per al teu esdeveniment'
+              }  
+            ),
+            # Àrea de text per a la descripció
             'description': forms.Textarea(
-                attrs={'rows': 4, 'class': 'form-control'}
+                attrs={
+                    'rows': 4, 
+                    'class': 'form-control', 
+                    'placeholder': 'De qué tracta aquest esdeveniment?'
+                }
             ),
+            # Camp de data i hora
             'scheduled_date': forms.DateTimeInput(
-                attrs={'type': 'datetime_local', 'class': 'form-control'}
+                attrs={
+                    'type': 'datetime-local', 
+                    'class': 'form-control'
+                }
             ),
+            # Camp de pujada d'arxius
             'thumbnail': forms.ClearableFileInput(
-                attrs={'class': 'form-control-file'}
+                attrs={
+                    'class': 'form-control-file'
+                }
+            ),
+            # Tags
+            'tags': forms.Textarea(
+                attrs={                    
+                    'rows': 2,
+                    'class': 'form-control',
+                    'placeholder': 'Separa els teus tags amb comes \',\'; p.ex: Tag1, Tag2, Tag3...'
+                }
+            ),
+            # URL del stream
+            'stream_url': forms.Textarea(
+                attrs={                    
+                    'rows': 1,
+                    'class': 'form-control',
+                    'placeholder': 'Entra l\'enllaç cap a l\'esdeveniment'
+                }
             )
         }
     
     def __init__(self, *args, **kwargs):
         """
         Desa l'usuari que està actualitzant l'esdeveniment.
+        Necessari per validar permisos i controlar canvis.
         """
         self.user = kwargs.pop('user', None)
         super().__init__(*args, **kwargs)
+
     
     def clean_status(self):
         """
-        Validació: només el creador pot canviar l'estat.
+        Validació: només el creador pot canviar l'estat de l'esdeveniment.
         """
         status = self.cleaned_data['status']
         if 'status' in self.changed_data and self.instance.creator != self.user:
@@ -122,7 +197,7 @@ class EventUpdateForm(forms.ModelForm):
     
     def clean_scheduled_date(self):
         """
-        Validació: no es pot canviar la data d'un esdeveniment en directe.
+        Validació: no es pot canviar la data d'un esdeveniment que ja està en directe.
         """
         scheduled_date = self.cleaned_data['scheduled_date']
         if self.instance.is_live() and 'scheduled_date' in self.changed_data:
@@ -139,9 +214,15 @@ class EventUpdateForm(forms.ModelForm):
 class EventSearchForm(forms.Form):
     """
     Formulari de cerca i filtratge d'esdeveniments.
-    Camps opcionals per textos, categories, estat i rang de dates.
+    
+    Camps opcionals:
+      - search: text de cerca lliure,
+      - category: filtratge per categoria,
+      - status: filtratge per estat,
+      - date_from / date_to: rang de dates.
     """
 
+    # Text de cerca opcional
     search = forms.CharField(
         max_length=200,
         required=False,
@@ -153,19 +234,29 @@ class EventSearchForm(forms.Form):
         )
     )
     
+    # Combobox de categories amb opció 'Totes'
     CATEGORY_CHOICES = [('all', 'Totes')] + Event.CATEGORY_CHOICES
+    # Combobox d'estats amb opció 'Tots'
     STATUS_CHOICES = [('all', 'Tots')] + Event.STATUS_CHOICES
     
     category = forms.ChoiceField(
         choices=CATEGORY_CHOICES,
         required=False,
-        widget=forms.Select(attrs={'class': 'form-select'})
+        widget=forms.Select(
+            attrs={
+                'class': 'form-select'
+            }
+        )
     )
     
     status = forms.ChoiceField(
         choices=STATUS_CHOICES,
         required=False,
-        widget=forms.Select(attrs={'class': 'form-select'})
+        widget=forms.Select(
+            attrs={
+                'class': 'form-select'
+            }
+        )
     )
     
     date_from = forms.DateField(
