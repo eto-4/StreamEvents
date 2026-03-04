@@ -34,7 +34,11 @@
         <h4>Descripció</h4>
         <p>{{ event.description|linebreaks }}</p>
     </div>
-
+    
+    <div class="col-lg-4">
+        {% include 'chat/includes/chat_box.html' %}
+    </div>
+    
     <!-- Vídeo embed si existeix stream_url -->
     {% if event.stream_url %}
         <div class="mb-4 ratio ratio-16x9">

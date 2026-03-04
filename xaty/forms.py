@@ -10,12 +10,11 @@ class ChatMessageForm(forms.ModelForm):
         widgets = {
             'message': forms.Textarea(attrs={
                 
-            
-                                      'class': 'form-control',
-                                      'rows': 2,
-                                      'placeholder': 'Escriu un missatge...',
-                                      'maxlength': 500,
-                                      })
+                'class': 'form-control',
+                'rows': 2,
+                'placeholder': 'Escriu un missatge...',
+                'maxlength': 500,
+            })
         }
     
     def clean_message(self):
