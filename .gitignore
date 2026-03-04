@@ -47,3 +47,6 @@ build/
 
 # --- Docker ---
 *.pid
+
+# Imatges de estructura:
+*.png
