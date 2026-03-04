@@ -5,6 +5,7 @@ from django.core.paginator import Paginator
 from django.http import Http404
 from .models import Event
 from .forms import EventCreationForm, EventUpdateForm, EventSearchForm
+from xaty.forms import ChatMessageForm
 
 # ===========================================
 # 5.1 Vista de Llistat d'Esdeveniments
@@ -303,5 +304,19 @@ def events_by_category_view(request, category):
     return render(
         request,
         'events/event_list.html',
+        context
+    )
+    
+def event_detail_view(request, pk):
+    event = get_object_or_404(Event, pk=pk)
+    is_creator = request.user == event.creator
+    context = {
+        'event': event,
+        'is_creator': is_creator,
+        'chat_form': ChatMessageForm()   # ← afegit
+    }
+    return render(
+        request,
+        'events/event_detail.html',
         context
     )
