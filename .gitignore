@@ -50,3 +50,6 @@ build/
 
 # Imatges de estructura:
 *.png
+
+# Fixtures
+./users/fixtures/*.json
