@@ -52,4 +52,5 @@ build/
 *.png
 
 # Fixtures
-./users/fixtures/*.json
+users/fixtures/*.json
+!users/fixtures/.gitkeep

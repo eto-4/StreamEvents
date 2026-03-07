@@ -5,7 +5,7 @@
     "fields": {
       "title": "Torneig de Fortnite",
       "description": "Competició intensa amb els millors jugadors de la comunitat.",
-      "creator": 8,
+      "creator": 4,
       "category": "gaming",
       "scheduled_date": "2025-02-10T18:00:00Z",
       "status": "scheduled",
@@ -24,7 +24,7 @@
     "fields": {
       "title": "Concert Acústic en Directe",
       "description": "Una sessió íntima amb versions i temes propis.",
-      "creator": 9,
+      "creator": 3,
       "category": "music",
       "scheduled_date": "2025-02-12T20:30:00Z",
       "status": "scheduled",
@@ -43,7 +43,7 @@
     "fields": {
       "title": "Debat sobre Intel·ligència Artificial",
       "description": "Experts discuteixen el futur de la IA i les seves implicacions socials.",
-      "creator": 10,
+      "creator": 2,
       "category": "technology",
       "scheduled_date": "2025-02-08T17:00:00Z",
       "status": "live",
@@ -62,7 +62,7 @@
     "fields": {
       "title": "Classe Magistral de Pintura",
       "description": "Aprèn tècniques de pintura acrílica amb una artista reconeguda.",
-      "creator": 10,
+      "creator": 4,
       "category": "art",
       "scheduled_date": "2025-02-15T10:00:00Z",
       "status": "scheduled",
@@ -81,7 +81,7 @@
     "fields": {
       "title": "Entrenament Funcional Intensiu",
       "description": "Sessió d'esport per posar-se en forma amb una rutina explosiva.",
-      "creator": 10,
+      "creator": 2,
       "category": "sports",
       "scheduled_date": "2025-02-11T07:00:00Z",
       "status": "finished",
@@ -100,7 +100,7 @@
     "fields": {
       "title": "Xerrada Motivacional: Troba el Teu Propòsit",
       "description": "Una sessió inspiradora per ajudar-te a definir objectius reals.",
-      "creator": 10,
+      "creator": 3,
       "category": "talk",
       "scheduled_date": "2025-02-20T19:00:00Z",
       "status": "scheduled",
@@ -119,7 +119,7 @@
     "fields": {
       "title": "Masterclass de Python",
       "description": "Aprèn Python des de zero amb exemples realistes.",
-      "creator": 9,
+      "creator": 1,
       "category": "education",
       "scheduled_date": "2025-02-18T16:00:00Z",
       "status": "live",
@@ -138,7 +138,7 @@
     "fields": {        
       "title": "'Just Chatting' Tranquil·lament",
       "description": "Una sessió relaxant responent preguntes de l'audiència.",
-      "creator": 8,
+      "creator": 2,
       "category": "talk",
       "scheduled_date": "2025-02-25T21:00:00Z",
       "status": "scheduled",
@@ -157,7 +157,7 @@
     "fields": {
       "title": "Demo de Videojoc Indie",
       "description": "Mostra exclusiva d'un nou videojoc creat per desenvolupadors locals.",
-      "creator": 8,
+      "creator": 5,
       "category": "entertainment",
       "scheduled_date": "2025-03-01T19:00:00Z",
       "status": "scheduled",
@@ -176,7 +176,7 @@
     "fields": {
       "title": "Taller de Cuina Asiàtica",
       "description": "Aprèn a cuinar plats tradicionals d’Àsia.",
-      "creator": 10,
+      "creator": 4,
       "category": "other",
       "scheduled_date": "2025-02-22T12:00:00Z",
       "status": "scheduled",
@@ -195,7 +195,7 @@
     "fields": {
       "title": "Showcase de Música Electrònica",
       "description": "DJ locals presenten una sessió única de música electrònica.",
-      "creator": 9,
+      "creator": 2,
       "category": "music",
       "scheduled_date": "2025-03-05T23:00:00Z",
       "status": "scheduled",
@@ -214,7 +214,7 @@
     "fields": {
       "title": "Marató de Gaming Retro",
       "description": "24 hores jugant a clàssics dels videojocs.",
-      "creator": 8,
+      "creator": 2,
       "category": "gaming",
       "scheduled_date": "2025-03-10T12:00:00Z",
       "status": "scheduled",
@@ -252,7 +252,7 @@
     "fields": {
       "title": "Introducció al Machine Learning",
       "description": "Tallers pràctics per entendre els conceptes bàsics del ML.",
-      "creator": 10,
+      "creator": 5,
       "category": "education",
       "scheduled_date": "2025-03-15T16:00:00Z",
       "status": "scheduled",
@@ -271,7 +271,7 @@
     "fields": {
       "title": "Partida de Chess Blitz",
       "description": "Partides ràpides amb comentaris en directe.",
-      "creator": 8,
+      "creator": 5,
       "category": "entertainment",
       "scheduled_date": "2025-02-28T18:00:00Z",
       "status": "finished",
