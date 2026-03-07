@@ -47,13 +47,14 @@ def chat_send_message(request, event_pk):
 def chat_load_messages(request, event_pk):
     event = get_object_or_404(Event, pk=event_pk)
     
-    messages = ChatMessage.objects.filter(
-        event=event,
-        is_deleted=False
-    ).order_by('created_at')[:50]
+    all_messages = ChatMessage.objects.filter(
+        event=event
+    ).order_by('created_at')[:100]
     
     data = []
-    for msg in messages:
+    for msg in all_messages:
+        if msg.is_deleted:
+            continue
         data.append({
             'id': msg.id,
             'user': msg.user.username,
@@ -64,9 +65,9 @@ def chat_load_messages(request, event_pk):
             'is_highlighted': msg.is_highlighted 
         })
     
-    return JsonResponse({
-        'messages': data
-    })
+    data = data[:50]
+    
+    return JsonResponse({'messages': data})
     
 # Eliminar missatge
 @login_required
