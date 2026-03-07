@@ -156,6 +156,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (chatMessages) {
         loadMessages();
-        setInterval(loadMessages, 3000);
+        setInterval(loadMessages, 5000);
     }
 });
