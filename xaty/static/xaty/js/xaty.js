@@ -60,19 +60,20 @@ document.addEventListener('DOMContentLoaded', function () {
         .then(data => {
             const loadingText = document.getElementById('loading-text');
             if (loadingText) loadingText.remove();
-
+        
             chatMessages.innerHTML = '';
-
+        
             if (data.messages.length === 0) {
-                chatMessages.innerHTML = `
-                    <p class="text-muted text-center small">Encara no hi ha missatges. Sigues el primer!</p>
-                `;
+                if (eventStatus === 'live') {
+                    chatMessages.innerHTML = '<p class="text-muted text-center small">Encara no hi ha missatges. Sigues el primer!</p>';
+                }
+                // Si no és live: no mostrem res, el loading ja ha desaparegut
             } else {
                 data.messages.forEach(msg => {
                     chatMessages.appendChild(createMessageElement(msg));
                 });
             }
-
+        
             scrollToBottom();
             updateMessageCount(data.messages.length);
         })

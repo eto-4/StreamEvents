@@ -41,7 +41,8 @@
 
 {% comment %} Passar eventId a JS {% endcomment %}
 <script>
-    const eventId = {{ event.id }}
+    const eventId = {{ event.id }};
+    const eventStatus = "{{ event.status }}";
 </script>
 
 <link rel="stylesheet" href="{% static 'xaty/css/xaty.css' %}">
