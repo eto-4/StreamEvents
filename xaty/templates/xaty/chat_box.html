@@ -13,17 +13,17 @@
 
     {% comment %} Formulari d'enviament {% endcomment %}
     {% if user.is_authenticated and event.status == 'live' %}
-       <div class="chat-form">
-           <form action="" id="chat-form">
-               {% csrf_token %}
-               <div class="d-flex gap-2 align-items-end">
-                   {{ chat_form.message }}
-                   <button type="submit" class="btn btn-primary btn-send">
-                       <i class="bi bi-send-fill">Enviar</i>
-                   </button>
-               </div>
-           </form>
-       </div>
+        <div class="chat-form">
+            <form action="" id="chat-form">
+                {% csrf_token %}
+                <div class="d-flex gap-2 align-items-end">
+                    {{ chat_form.message }}
+                    <button type="submit" class="btn btn-primary btn-send mb-0">
+                        <i class="bi bi-send-fill"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
     {% elif not user.is_authenticated %}
         <div class="chat-info-msg">
             <p class="text-muted text-center small mb-0">

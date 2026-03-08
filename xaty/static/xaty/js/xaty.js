@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const deleteBtn = message.can_delete ? 
             '<div class="message-actions"><button class="btn btn-sm delete-message" data-message-id="' + message.id + '"><i class="bi bi-trash"></i></button></div>' 
             : '';
-            
+
         div.innerHTML = `
             <div class="message-header">
                 <strong class="message-username">${escapeHtml(message.display_name)}</strong>
@@ -148,6 +148,23 @@ document.addEventListener('DOMContentLoaded', function () {
                 .catch( err => console.error(
                     'Error eliminant missatge: ', err
                 ));
+        });
+    }
+
+    // ─── Fer el xat mes gran si l'usuari escriu diverses linies ———————————————————————————————————————————————————
+    if (chatForm) {
+        const textarea = chatForm.querySelector('textarea');
+        textarea.addEventListener('input', function() {
+            this.style.height = 'auto';
+            const maxHeight = parseInt(getComputedStyle(this).lineHeight) * 4;
+            this.style.height = Math.min(this.scrollHeight, maxHeight) + 'px';
+        });
+
+        textarea.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                chatForm.dispatchEvent(new Event('submit'));
+            }
         });
     }
 

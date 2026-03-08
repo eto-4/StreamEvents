@@ -9,11 +9,11 @@ class ChatMessageForm(forms.ModelForm):
         fields = ['message']
         widgets = {
             'message': forms.Textarea(attrs={
-                
                 'class': 'form-control',
-                'rows': 2,
+                'rows': 1,
                 'placeholder': 'Escriu un missatge...',
                 'maxlength': 500,
+                'style': 'resize: none; overflow-y: hidden;'
             })
         }
     
