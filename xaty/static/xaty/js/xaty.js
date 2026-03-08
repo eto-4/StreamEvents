@@ -34,6 +34,10 @@ document.addEventListener('DOMContentLoaded', function () {
         if (message.is_highlighted) div.classList.add('highlighted');
         div.dataset.messageId = message.id;
 
+        const deleteBtn = message.can_delete ? 
+            '<div class="message-actions"><button class="btn btn-sm delete-message" data-message-id="' + message.id + '"><i class="bi bi-trash"></i></button></div>' 
+            : '';
+            
         div.innerHTML = `
             <div class="message-header">
                 <strong class="message-username">${escapeHtml(message.display_name)}</strong>
@@ -42,12 +46,7 @@ document.addEventListener('DOMContentLoaded', function () {
             <div class="message-content">
                 <p class="mb-0">${escapeHtml(message.message)}</p>
             </div>
-            ${message.can_delete ? `
-            <div class="message-actions">
-                <button class="btn btn-sm delete-message" data-message-id="${message.id}">
-                    <i class="bi bi-trash"></i>
-                </button>
-            </div>` : ''}
+            ${deleteBtn}
         `;
         return div;
     }

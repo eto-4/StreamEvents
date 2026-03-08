@@ -50,7 +50,7 @@
 /* ─── Missatges ──────────────────────────────────────────────── */
 .chat-message {
     background-color: var(--chat-message-bg);
-    padding: 10px 14px;
+    padding: 6px 14px;
     border-radius: 8px;
     margin-bottom: 8px;
     transition: background-color 0.2s ease;
@@ -87,8 +87,7 @@
 
 /* ─── Accions del missatge ───────────────────────────────────── */
 .message-actions .btn {
-    font-size: 0.75rem;
-    color: #888;
+    color: #ffffff;
     background: transparent;
     border: none;
     transition: color 0.2s ease;
