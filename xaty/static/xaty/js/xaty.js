@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', function () {
         
             if (data.messages.length === 0) {
                 if (eventStatus === 'live') {
-                    chatMessages.innerHTML = '<p class="text-muted text-center small">Encara no hi ha missatges. Sigues el primer!</p>';
+                    chatMessages.innerHTML = '<p class="message-actions text-center small">Encara no hi ha missatges. Sigues el primer!</p>';
                 }
                 // Si no és live: no mostrem res, el loading ja ha desaparegut
             } else {
