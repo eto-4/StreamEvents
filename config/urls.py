@@ -8,6 +8,7 @@ from django.conf.urls.static import static    # Necessari per servir fitxers mul
 urlpatterns = [
     # Ruta per accedir al panell d’administració de Django
     path('', include('events.urls', namespace='events')),
+    path('', include("semantic_search.urls", namespace="semantic_search")),
     path('users/', include('users.urls', namespace='users')),
     path('xaty/', include('xaty.urls', namespace='xaty')),
     path('admin/', admin.site.urls)
