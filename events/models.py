@@ -119,7 +119,7 @@ class Event(models.Model):
     # Helpers
     # -------------------------
     def get_absolute_url(self):
-        return reverse("events:detail", kwargs={"pk": self.pk})
+        return reverse("events:event_detail", kwargs={"pk": self.pk})
 
     def is_live(self):
         return self.status == 'live'
