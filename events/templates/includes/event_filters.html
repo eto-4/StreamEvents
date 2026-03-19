@@ -38,6 +38,16 @@
     <div class="justify-content-start gap-2" id="form-actions">
         <button type="submit" class="btn btn-primary">Filtrar</button>
         <a href="{% url 'events:event_list' %}" class="btn btn-secondary">Reset</a>
+        <button type="button" class="btn btn-outline-primary" onclick="goToSemantic()">
+            Cerca semàntica
+        </button>
     </div>
-
 </form>
+
+<script>
+    document.getElementById('semantic-btn').addEventListener('click', function() {
+        const q = document.querySelector('[name=search]').value.trim();
+        const url = "{% url 'semantic_search:semantic' %}" + (q ? "?q=" + encodeURIComponent(q) : "");
+        window.location.href = url;
+    });
+</script>

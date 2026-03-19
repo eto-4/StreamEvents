@@ -38,8 +38,7 @@ def semantic_search(request):
     q = (request.GET.get("q") or "").strip()
 
     # Boolean per decidir si només mostrar events futurs
-    # True → només events amb scheduled_date >= avui
-    only_future = request.GET.get("future", "1") == "1"
+    only_future = request.GET.get("future", "0") == "1"
 
     results = []
 
