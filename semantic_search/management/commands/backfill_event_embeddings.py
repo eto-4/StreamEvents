@@ -48,10 +48,8 @@ class Command(BaseCommand):
 
         # Query inicial: tots els events ordenats per data de creació
         qs = Event.objects.all().order_by("created_at")
-
-        # Si no es força recalcul, només processa events sense embedding
-        if not force:
-            qs = qs.filter(embedding__isnull=True)
+        if limit and limit > 0:
+            qs = qs[:limit]
 
         # Aplica límit si s'ha passat com a opció
         if limit and limit > 0:
@@ -60,6 +58,8 @@ class Command(BaseCommand):
         total = 0  # Comptador d'embeddings generats
 
         for e in qs:
+            if not force and e.embedding:
+                continue
             # Text agregat de l'event (title + description + category + tags)
             text = _event_text(e)
             if not text:
@@ -68,7 +68,6 @@ class Command(BaseCommand):
 
             # Genera embedding
             vec = embed_text(text)
-
             # Desa embedding i informació del model
             e.embedding = vec
             e.embedding_model = model_name()
