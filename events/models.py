@@ -3,6 +3,8 @@ from django.conf import settings
 from django.urls import reverse
 from urllib.parse import urlparse, parse_qs
 
+from django.db.models import JSONField
+
 
 class Event(models.Model):
     """
@@ -93,6 +95,11 @@ class Event(models.Model):
         blank=True, 
         null=True
     )
+
+    # Camps d'embedding
+    embedding = JSONField(blank=True, null=True)
+    embedding_model = models.CharField(max_length=200, blank=True, null=True)
+    embedding_updated_at = models.DateTimeField(blank=True, null=True)
 
     # -------------------------
     # Configuració
