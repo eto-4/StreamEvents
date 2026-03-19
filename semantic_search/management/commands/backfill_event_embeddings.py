@@ -47,9 +47,7 @@ class Command(BaseCommand):
         limit = options["limit"]
 
         # Query inicial: tots els events ordenats per data de creació
-        qs = Event.objects.all().order_by("created_at")
-        if limit and limit > 0:
-            qs = qs[:limit]
+        qs = Event.objects.all()
 
         # Aplica límit si s'ha passat com a opció
         if limit and limit > 0:
