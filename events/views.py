@@ -7,11 +7,6 @@ from .models import Event
 from .forms import EventCreationForm, EventUpdateForm, EventSearchForm
 from xaty.forms import ChatMessageForm
 
-def home_view(request):
-    if request.user.is_authenticated:
-        return redirect('events:event_list')
-    return render(request, 'home.html')
-
 # ===========================================
 # 5.1 Vista de Llistat d'Esdeveniments
 # ===========================================
