@@ -158,11 +158,13 @@
                 const form = document.getElementById('search-form');
 
                 // Mostrar al hacer focus en la barra de búsqueda
-                searchInput.addEventListener('focus', () => {
-                    filters.style.display = "block";
-                    actions.style.display = "flex";
-                    searchBar.style.marginBottom = '15px';
-                });
+                if (searchInput) {
+                    searchInput.addEventListener('focus', () => {
+                        filters.style.display = "block";
+                        actions.style.display = "flex";
+                        searchBar.style.marginBottom = '15px';
+                    });
+                }
             
                 // Detectar click fuera del formulario para ocultar filtros + botones
                 document.addEventListener('click', (e) => {
@@ -177,6 +179,7 @@
             
             });
         </script>
-
+        
+        {% include 'assistant_chat/chat_widget.html' %}
     </body>
 </html>
