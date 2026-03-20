@@ -1,3 +1,5 @@
+# assistant_chat > Services > retriever.py
+
 from django.utils import timezone
 from events.models import Event
 from semantic_search.services.embeddings import embed_text
