@@ -135,3 +135,9 @@ footer small {
 .auth-card .helptext {
     color: #fffafa !important;
 }
+
+/* ─── Chat sticky ────────────────────────────────────────────── */
+.chat-sticky {
+    position: sticky;
+    top: 20px;
+}

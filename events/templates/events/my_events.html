@@ -3,17 +3,18 @@
 {% block title %}Els meus Esdeveniments | StreamEvents{% endblock %}
 
 {% block content %}
-
 <div class="container">
-    
     <h1>Els meus esdeveniments</h1>
-    <!-- Filtre avançat -->
+
+    {# Filtres de cerca #}
     {% include "includes/event_filters.html" %}
 
-    <!-- Llista d'esdeveniments -->
-    <div class="row row-cols-1 row-cols-md-3 g-4 mt-4">
+    {# Llista d'esdeveniments #}
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 mt-4">        
         {% for event in events %}
-            {% include 'includes/event_card.html' with event=event compact=True %}
+            <div class="col">
+                {% include 'includes/event_card.html' with event=event %}
+            </div>
         {% empty %}
             <div class="col">
                 <p class="text-center">No tens cap esdeveniment creat.</p>
@@ -21,16 +22,14 @@
         {% endfor %}
     </div>
 
-
-    <!-- Paginació -->
+    {# Paginació #}
     {% if events.has_other_pages %}
-        <nav aria-label="Paginació">
-            <ul class="pagination justify-content-center mt-4">
+        <nav aria-label="Paginació" class="mt-4">
+            <ul class="pagination justify-content-center">
 
                 {% if events.has_previous %}
                     <li class="page-item">
-                        <a class="page-link"
-                           href="?page={{ events.previous_page_number }}&status={{ request.GET.status }}">Anterior</a>
+                        <a class="page-link" href="?page={{ events.previous_page_number }}">Anterior</a>
                     </li>
                 {% else %}
                     <li class="page-item disabled"><span class="page-link">Anterior</span></li>
@@ -41,16 +40,14 @@
                         <li class="page-item active"><span class="page-link">{{ num }}</span></li>
                     {% else %}
                         <li class="page-item">
-                            <a class="page-link"
-                               href="?page={{ num }}&status={{ request.GET.status }}">{{ num }}</a>
+                            <a class="page-link" href="?page={{ num }}">{{ num }}</a>
                         </li>
                     {% endif %}
                 {% endfor %}
 
                 {% if events.has_next %}
                     <li class="page-item">
-                        <a class="page-link"
-                           href="?page={{ events.next_page_number }}&status={{ request.GET.status }}">Següent</a>
+                        <a class="page-link" href="?page={{ events.next_page_number }}">Següent</a>
                     </li>
                 {% else %}
                     <li class="page-item disabled"><span class="page-link">Següent</span></li>
@@ -59,7 +56,5 @@
             </ul>
         </nav>
     {% endif %}
-
 </div>
-
 {% endblock %}

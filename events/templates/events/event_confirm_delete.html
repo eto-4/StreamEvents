@@ -3,14 +3,27 @@
 {% block title %}Eliminar {{ event.title }} | StreamEvents{% endblock %}
 
 {% block content %}
-<div class="container text-center py-5">
-    <h1>Eliminar Esdeveniment</h1>
-    <p class="lead">Estàs segur que vols eliminar l'esdeveniment <strong>{{ event.title }}</strong>?</p>
+<div class="d-flex justify-content-center mt-5">
+    <div class="card border-0 shadow-sm rounded-4 p-4 text-center auth-card" style="max-width: 500px; width: 100%;">
+        
+        <h1 class="mb-3">Eliminar Esdeveniment</h1>
+        
+        <p class="helptext lead mb-1">Estàs segur que vols eliminar:</p>
+        <p class="helptext fw-bold mb-4">{{ event.title }}</p>
+        <p class="helptext small mb-4">Aquesta acció no es pot desfer.</p>
 
-    <form method="POST">
-        {% csrf_token %}
-        <button type="submit" class="btn btn-danger me-2">Sí, eliminar</button>
-        <a href="{% url 'events:event_detail' event.pk %}" class="btn btn-secondary">Cancel·lar</a>
-    </form>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="d-flex justify-content-center gap-3">
+                <button type="submit" class="btn btn-danger">
+                    <i class="bi bi-trash me-1"></i> Sí, eliminar
+                </button>
+                <a href="{% url 'events:event_detail' event.pk %}" class="btn btn-secondary">
+                    Cancel·lar
+                </a>
+            </div>
+        </form>
+
+    </div>
 </div>
 {% endblock %}

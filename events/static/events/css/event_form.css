@@ -1,0 +1,211 @@
+/* ─── Form card ──────────────────────────────────────────────── */
+.event-form {
+    width: 100%;
+    max-width: 900px;
+    background: rgba(22, 27, 34, 0.92);
+    backdrop-filter: blur(6px);
+    border-radius: 14px;
+    padding: 2.6rem;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+    color: #e6e6e6;
+    font-size: 0.95rem;
+}
+
+/* ─── Títol principal ────────────────────────────────────────── */
+.event-form .form-title {
+    text-align: center;
+    font-weight: bold;
+    font-size: 2rem;
+    text-decoration: underline;
+    color: #58a6ffcc;
+    margin-bottom: 2rem;
+}
+
+/* ─── Grid ───────────────────────────────────────────────────── */
+.event-form-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr 1fr;
+    grid-template-areas:
+        "title title category"
+        "tags description description"
+        "status description description"
+        "stream date date"
+        "max thumbnail thumbnail"
+        "actions actions actions";
+    gap: 1.6rem;
+}
+
+.event-form-grid .f-title       { grid-area: title; }
+.event-form-grid .f-category    { grid-area: category; }
+.event-form-grid .f-tags        { grid-area: tags; }
+.event-form-grid .f-description { grid-area: description; }
+.event-form-grid .f-stream      { grid-area: stream; }
+.event-form-grid .f-date        { grid-area: date; }
+.event-form-grid .f-max         { grid-area: max; }
+.event-form-grid .f-thumbnail   { grid-area: thumbnail; }
+.event-form-grid .f-actions     { grid-area: actions; }
+.event-form-grid .f-status      { grid-area: status; }
+
+.event-form-grid .f-description textarea {
+    min-height: 140px;
+}
+
+/* ─── Labels ─────────────────────────────────────────────────── */
+.event-form .field-label label {
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: #58a6ff;
+    display: inline-block;
+    margin-bottom: 6px;
+}
+
+.event-form .field-label label::after {
+    content: "";
+    display: block;
+    width: 22px;
+    height: 2px;
+    margin-top: 4px;
+    background: #58a6ff;
+    opacity: 0.6;
+    border-radius: 2px;
+}
+
+/* ─── Inputs ─────────────────────────────────────────────────── */
+.event-form input,
+.event-form select,
+.event-form textarea {
+    width: 100%;
+    background-color: #0d1117;
+    border: 1px solid #30363d;
+    border-radius: 8px;
+    padding: 11px 12px;
+    font-size: 0.95rem;
+    color: #e6e6e6;
+}
+
+.event-form input::placeholder,
+.event-form textarea::placeholder {
+    color: #6e7681;
+}
+
+.event-form textarea {
+    resize: vertical;
+    min-height: 90px;
+}
+
+.event-form input:focus,
+.event-form select:focus,
+.event-form textarea:focus {
+    outline: none;
+    border-color: #58a6ff;
+    box-shadow: 0 0 0 2px rgba(88, 166, 255, 0.25);
+}
+
+.event-form select {
+    background-color: #161b22;
+}
+
+/* ─── Thumbnail ──────────────────────────────────────────────── */
+.event-form .f-thumbnail input[type="file"] {
+    display: none;
+}
+
+.event-form .f-thumbnail label {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    padding: 12px;
+    background: #161b22;
+    border: 1px dashed #454d57;
+    border-radius: 8px;
+    color: #c9d1d9;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-transform: none;
+    letter-spacing: normal;
+    font-size: 0.95rem;
+}
+
+.event-form .f-thumbnail label:hover {
+    border-color: #58a6ff;
+    color: #ffffff;
+    background: rgba(88, 166, 255, 0.08);
+}
+
+/* ─── Errors ─────────────────────────────────────────────────── */
+.event-form .errorlist,
+.event-form .nonfield {
+    margin-top: 6px;
+    font-size: 0.85rem;
+    color: #ff7b72;
+    background: rgba(248, 81, 73, 0.1);
+    border: 1px solid rgba(248, 81, 73, 0.4);
+    padding: 10px 12px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+}
+
+/* ─── Botons ─────────────────────────────────────────────────── */
+.event-form .f-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 1rem;
+}
+
+.event-form .f-actions .btn-submit {
+    background: linear-gradient(135deg, #238636, #2ea043);
+    border: none;
+    color: #ffffff;
+    border-radius: 8px;
+    padding: 10px 24px;
+    font-weight: 500;
+    cursor: pointer;
+    box-shadow: 0 6px 18px rgba(35, 134, 54, 0.35);
+    transition: all 0.2s ease;
+}
+
+.event-form .f-actions .btn-submit:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 10px 28px rgba(35, 134, 54, 0.5);
+}
+
+.event-form .f-actions .btn-cancel {
+    background: transparent;
+    border: 1px solid #30363d;
+    color: #c9d1d9;
+    border-radius: 8px;
+    padding: 10px 24px;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.event-form .f-actions .btn-cancel:hover {
+    background: rgba(255, 255, 255, 0.06);
+    color: #ffffff;
+}
+
+/* ─── Responsive ─────────────────────────────────────────────── */
+@media (max-width: 768px) {
+    .event-form-grid {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "title"
+            "category"
+            "tags"
+            "description"
+            "status"
+            "stream"
+            "date"
+            "max"
+            "thumbnail"
+            "actions";
+    }
+}
