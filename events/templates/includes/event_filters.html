@@ -34,7 +34,8 @@
     <div class="d-flex justify-content-start gap-2" id="form-actions">
         <button type="submit" class="btn btn-primary">Filtrar</button>
         <a href="{% url 'events:event_list' %}" class="btn btn-secondary">Reset</a>
-        <button type="button" class="btn btn-outline-primary" id="semantic-btn">
+        <button type="button" class="btn btn-outline-primary" id="semantic-btn"
+            data-url="{% url 'semantic_search:semantic' %}">
             Cerca semàntica
         </button>
     </div>
