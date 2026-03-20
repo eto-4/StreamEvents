@@ -1,3 +1,4 @@
+// base.html js.
 document.addEventListener("DOMContentLoaded", () => {
     const searchBar = document.getElementById('search-bar');
     const searchInput = document.querySelector('.search-bar input');
@@ -22,3 +23,14 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 });
+
+// Events include filter js.
+const semanticBtn = document.getElementById('semantic-btn');
+if (semanticBtn) {
+    semanticBtn.addEventListener('click', function() {
+        const q = document.querySelector('[name=search]').value.trim();
+        const url = semanticBtn.dataset.url + (q ? "?q=" + encodeURIComponent(q) : "");
+        window.location.href = url;
+    });
+}
+
