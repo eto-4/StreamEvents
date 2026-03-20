@@ -7,6 +7,11 @@ from .models import Event
 from .forms import EventCreationForm, EventUpdateForm, EventSearchForm
 from xaty.forms import ChatMessageForm
 
+def home_view(request):
+    if request.user.is_authenticated:
+        return redirect('events:event_list')
+    return render(request, 'home.html')
+
 # ===========================================
 # 5.1 Vista de Llistat d'Esdeveniments
 # ===========================================
@@ -83,19 +88,19 @@ def event_detail_view(request, pk):
     Verifica si l'usuari és el creador per mostrar opcions d'edició.
     Gestiona esdeveniments no trobats amb 404.
     """
-    
     event = get_object_or_404(Event, pk=pk)
     is_creator = request.user == event.creator
     context = {
         'event': event,
-        'is_creator': is_creator
+        'is_creator': is_creator,
+        'chat_form': ChatMessageForm()   # ← afegit
     }
     return render(
         request,
         'events/event_detail.html',
         context
     )
-    
+
 # ===========================================
 # 5.3 Vista de Creació d'Esdeveniment
 # ===========================================
@@ -304,19 +309,5 @@ def events_by_category_view(request, category):
     return render(
         request,
         'events/event_list.html',
-        context
-    )
-    
-def event_detail_view(request, pk):
-    event = get_object_or_404(Event, pk=pk)
-    is_creator = request.user == event.creator
-    context = {
-        'event': event,
-        'is_creator': is_creator,
-        'chat_form': ChatMessageForm()   # ← afegit
-    }
-    return render(
-        request,
-        'events/event_detail.html',
         context
     )

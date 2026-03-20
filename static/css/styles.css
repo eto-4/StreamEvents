@@ -1,14 +1,105 @@
-body, html {
-    margin: 0px;
-    padding: 0px;
-    font-family: sans-serif;
+/* ─── Variables globals ─────────────────────────────────────── */
+:root {
+    --color-primary: #6f14de;
+    --color-primary-shadow: rgba(111, 20, 222, 0.5);
+    --color-dark: #212529;
+    --color-dark-soft: #2b2b2b;
 }
 
-/* Dropdown */
-
-/* Defineix que el cos ocupa tota l'altura i organitza columnes verticals */
+/* ─── Layout general ─────────────────────────────────────────── */
 body {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
+
+main {
+    flex: 1;
+}
+
+h1, h2, h3 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+/* ─── Footer ─────────────────────────────────────────────────── */
+footer {
+    background-color: var(--color-dark);
+    color: #ddd;
+}
+
+footer small {
+    color: #bbb;
+}
+
+/* ─── Navbar ─────────────────────────────────────────────────── */
+.user-btn {
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.user-btn:hover {
+    background-color: var(--color-dark-soft);
+    transform: scale(1.02);
+}
+
+.dropdown-menu {
+    min-width: 200px;
+}
+
+.dropdown-item:hover {
+    background-color: #f1f1f1;
+}
+
+/* ─── Filtres de cerca ───────────────────────────────────────── */
+#filters-block {
+    background-color: var(--color-dark-soft);
+}
+
+#filters-block select,
+#filters-block input[type="date"],
+.search-bar input {
+    background-color: var(--color-dark) !important;
+    color: #fff !important;
+    border: 1px solid #444 !important;
+}
+
+::placeholder {
+    color: #fff !important;
+    opacity: 1;
+}
+
+#filters-block,
+#form-actions {
+    display: none;
+}
+
+/* ─── Cards d'events ─────────────────────────────────────────── */
+.event-card {
+    border-radius: 0.5rem;
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
+    box-shadow: 0 2px 8px var(--color-primary-shadow);
+}
+
+.event-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px var(--color-primary-shadow);
+}
+
+.event-img-wrapper {
+    background-color: #fff;
+    max-width: 300px;
+    max-height: 200px;
+    margin: 0 auto;
+    overflow: hidden;
+    border-radius: 0.5rem 0.5rem 0 0;
+}
+
+.event-img {
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+}
+

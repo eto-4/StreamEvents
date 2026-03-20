@@ -5,8 +5,9 @@ from . import views
 app_name='events'
 
 urlpatterns=[
+    path('', views.home_view, name='home'),
     # Descripció - Llistat d'esdeveniments
-    path('', views.event_list_view, name='event_list' ),
+    path('events/', views.event_list_view, name='event_list' ),
     # Descripció - Crear esdeveniment
     path('create/', views.event_create_view, name='event_create'),
     # Descripció - Detall d'esdeveniment
