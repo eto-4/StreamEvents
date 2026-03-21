@@ -5,6 +5,13 @@
     --color-dark: #212529;
     --color-dark-soft: #2b2b2b;
     --color-card-bg: #2b2b2b;
+
+    --widget-bg: var(--color-card-bg);
+    --widget-header: var(--color-dark-soft);
+    --widget-border: var(--color-border);
+    --widget-msg-bot: var(--color-dark-soft);
+    --widget-event-card: var(--color-card-bg);
+    --widget-event-card-hover: var(--color-dark);
 }
 
 /* ─── Layout general ─────────────────────────────────────────── */

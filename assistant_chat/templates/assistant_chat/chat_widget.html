@@ -1,217 +1,45 @@
 {% load static %}
 
-<!-- Botó flotant -->
-<button id="assistant-toggle" style="
-    position: fixed;
-    bottom: 24px;
-    right: 24px;
-    width: 56px;
-    height: 56px;
-    border-radius: 50%;
-    background-color: #6f14de;
-    color: white;
-    border: none;
-    font-size: 1.4rem;
-    cursor: pointer;
-    box-shadow: 0 4px 16px rgba(111, 20, 222, 0.5);
-    z-index: 1050;
-    transition: transform 0.2s ease;
-">
+<link rel="stylesheet" href="{% static 'assistant_chat/css/widget.css' %}">
+
+{# Botó flotant #}
+<button id="assistant-toggle" class="assistant-toggle">
     <i class="bi bi-stars"></i>
 </button>
 
-<!-- Panel del xat -->
-<div id="assistant-panel" style="
-    position: fixed;
-    bottom: 90px;
-    right: 24px;
-    width: 360px;
-    height: 500px;
-    background: #1a1a2e;
-    border-radius: 16px;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.4);
-    z-index: 1049;
-    display: none;
-    flex-direction: column;
-    overflow: hidden;
-    border: 1px solid #2a2a4a;
-">
-    <!-- Capçalera -->
-    <div style="
-        background: #16213e;
-        padding: 16px 20px;
-        border-bottom: 1px solid #2a2a4a;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    ">
-        <span style="color: #e0e0e0; font-weight: 600;">Assistent d'esdeveniments</span>
-        <button onclick="document.getElementById('assistant-panel').style.display='none'" style="
-            background: transparent;
-            border: none;
-            color: #888;
-            font-size: 1.1rem;
-            cursor: pointer;
-        ">
+{# Panel del xat #}
+<div id="assistant-panel" class="assistant-panel">
+
+    {# Capçalera #}
+    <div class="assistant-header">
+        <span>Assistent d'esdeveniments</span>
+        <button id="assistant-close" class="assistant-close">
             <i class="bi bi-x-lg"></i>
         </button>
     </div>
 
-    <!-- Missatges -->
-    <div id="assistant-messages" style="
-        flex: 1;
-        overflow-y: auto;
-        padding: 16px;
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-    ">
-        <div style="color: #888; font-size: 0.85rem; text-align: center;">
-            Pregunta'm sobre esdeveniments! Ex: "vull un concert de jazz aquest cap de setmana"
+    {# Missatges #}
+    <div id="assistant-messages" class="assistant-messages">
+        <div class="assistant-hint">
+            Pregunta'm sobre esdeveniments!<br>
+            <small>Ex: "vull un concert de jazz aquest cap de setmana"</small>
         </div>
     </div>
 
-    <!-- Input -->
-    <div style="
-        padding: 12px 16px;
-        border-top: 1px solid #2a2a4a;
-        background: #16213e;
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-    ">
-        <div style="display: flex; gap: 10px; align-items: center;">
-            <label style="color: #888; font-size: 0.75rem; display: flex; align-items: center; gap: 4px;">
-                <input type="checkbox" id="only-future"> Només futurs
-            </label>
+    {# Footer / Input #}
+    <div class="assistant-footer">
+        <label class="only-future-label">
+            <input type="checkbox" id="only-future"> Només futurs
+        </label>
+        <div class="assistant-input-row">
+            <textarea id="assistant-input" class="assistant-input" rows="1"
+                placeholder="Escriu la teva consulta..."></textarea>
+            <button id="assistant-send" class="assistant-send">
+                <i class="bi bi-send-fill"></i>
+            </button>
         </div>
-        <textarea id="assistant-input" rows="1" placeholder="Escriu la teva consulta..." style="
-            flex: 1;
-            background: #1a1a2e;
-            color: #e0e0e0;
-            border: 1px solid #2a2a4a;
-            border-radius: 8px;
-            padding: 8px 12px;
-            font-size: 0.9rem;
-            resize: none;
-            overflow-y: hidden;
-        "></textarea>
-        <button id="assistant-send" style="
-            background: #6f14de;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            padding: 8px 12px;
-            cursor: pointer;
-            font-size: 1rem;
-        "><i class="bi bi-send-fill"></i></button>
     </div>
+
 </div>
 
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    const toggleBtn = document.getElementById('assistant-toggle');
-    const panel = document.getElementById('assistant-panel');
-    const sendBtn = document.getElementById('assistant-send');
-    const input = document.getElementById('assistant-input');
-    const messages = document.getElementById('assistant-messages');
-
-    // Obrir/tancar panel
-    toggleBtn.addEventListener('click', function() {
-        const isOpen = panel.style.display === 'flex';
-        panel.style.display = isOpen ? 'none' : 'flex';
-    });
-
-    // Auto-créixer textarea
-    input.addEventListener('input', function() {
-        this.style.height = 'auto';
-        const maxHeight = parseInt(getComputedStyle(this).lineHeight) * 4;
-        this.style.height = Math.min(this.scrollHeight, maxHeight) + 'px';
-    });
-
-    // Enviar amb Enter
-    input.addEventListener('keydown', function(e) {
-        if (e.key === 'Enter' && !e.shiftKey) {
-            e.preventDefault();
-            sendMessage();
-        }
-    });
-
-    sendBtn.addEventListener('click', sendMessage);
-
-    function addMessage(text, isUser) {
-        const div = document.createElement('div');
-        div.style.cssText = `
-            padding: 10px 14px;
-            border-radius: 10px;
-            font-size: 0.875rem;
-            line-height: 1.5;
-            max-width: 85%;
-            ${isUser 
-                ? 'background:#6f14de; color:white; align-self:flex-end;' 
-                : 'background:#0f3460; color:#e0e0e0; align-self:flex-start;'}
-        `;
-        div.innerText = text;
-        messages.appendChild(div);
-        messages.scrollTop = messages.scrollHeight;
-        return div;
-    }
-
-    function addEventCards(events) {
-        if (!events || events.length === 0) return;
-        const wrapper = document.createElement('div');
-        wrapper.style.cssText = 'display:flex; flex-direction:column; gap:6px; align-self:flex-start; width:100%;';
-        events.forEach(evt => {
-            const card = document.createElement('a');
-            card.href = evt.url;
-            card.style.cssText = `
-                display: block;
-                background: #1a4a7a;
-                color: #e0e0e0;
-                border-radius: 8px;
-                padding: 8px 12px;
-                text-decoration: none;
-                font-size: 0.8rem;
-                border-left: 3px solid #6f14de;
-                transition: background 0.2s;
-            `;
-            card.innerHTML = `
-                <strong>${evt.title}</strong><br>
-                <span style="color:#888;">${evt.category} · ${evt.scheduled_date ? evt.scheduled_date.split('T')[0] : ''}</span>
-            `;
-            wrapper.appendChild(card);
-        });
-        messages.appendChild(wrapper);
-        messages.scrollTop = messages.scrollHeight;
-    }
-
-    async function sendMessage() {
-        const msg = input.value.trim();
-        if (!msg) return;
-        const onlyFuture = document.getElementById('only-future').checked;
-
-        addMessage(msg, true);
-        input.value = '';
-        input.style.height = 'auto';
-
-        const thinking = addMessage('Pensant...', false);
-
-        try {
-            const resp = await fetch('/assistant/api/chat/', {
-                method: 'POST',
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({message: msg, only_future: onlyFuture})
-            });
-            const data = await resp.json();
-            thinking.remove();
-            addMessage(data.answer || '', false);
-            addEventCards(data.events || []);
-            if (data.follow_up) {
-                addMessage(data.follow_up, false);
-            }
-        } catch(err) {
-            thinking.innerText = 'Error de connexió. Torna-ho a provar.';
-        }
-    }
-});
-</script>
+<script src="{% static 'assistant_chat/js/widget.js' %}"></script>
