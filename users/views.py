@@ -7,6 +7,7 @@ from django.urls import reverse
 from .forms import CustomUserCreationForm, CustomAuthenticationForm, CustomUserUpdateForm
 from django.contrib.auth import get_user_model
 import os
+from django.views.decorators.http import require_POST
 
 # Obtenim el model d'usuari configurat a settings.AUTH_USER_MODEL
 User = get_user_model()
@@ -109,9 +110,15 @@ def edit_profile_view(request):
 # VISTA DE PERFIL PÚBLIC
 # ------------------------------
 def public_profile_view(request, username):
-    # Obtenim l'usuari pel username o retornem 404
+    from .models import Follow
     user = get_object_or_404(User, username=username)
-    return render(request, 'users/public_profile.html', {'profile_user': user})
+    is_following = False
+    if request.user.is_authenticated:
+        is_following = Follow.objects.filter(follower=request.user, following=user).exists()
+    return render(request, 'users/public_profile.html', {
+        'profile_user': user,
+        'is_following': is_following
+    })
 
 # ------------------------------
 # VISTA PER ELIMINAR AVATAR
@@ -139,3 +146,19 @@ def remove_avatar(request):
 
     # Redirigim a la pàgina d'edició de perfil
     return redirect('users:edit_profile')
+
+# Seguir usuaris
+@login_required
+@require_POST
+def toggle_follow(request, username):
+    from .models import Follow
+    target = get_object_or_404(User, username=username)
+    if target == request.user:
+        return redirect('users:public_profile', username=username)
+    existing = Follow.objects.filter(follower=request.user, following=target).first()
+    if existing:
+        existing.delete()
+    else:
+        Follow.objects.create(follower=request.user, following=target)
+    return redirect('users:public_profile', username=username)
+

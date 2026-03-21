@@ -54,7 +54,9 @@
                     </div>
                     <div class="col-6">
                         <small class="text-muted d-block">Creador</small>
-                        <span>{{ event.creator.username }}</span>
+                        <a href="{% url 'users:public_profile' event.creator.username %}" class="text-decoration-none">
+                            {{ event.creator.username }}
+                        </a>
                     </div>
                     <div class="col-6">
                         <small class="text-muted d-block">Etiquetes</small>
