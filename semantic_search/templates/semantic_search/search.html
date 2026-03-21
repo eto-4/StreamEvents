@@ -4,50 +4,57 @@
 
 {% block content %}
 <div class="container mt-4">
-    <h2 class="mb-4">Cerca Semàntica</h2>
-    
+    <h2>Cerca Semàntica</h2>
+
+    {# Formulari de cerca #}
     <form method="get" class="mb-4">
         <div class="d-flex gap-2 align-items-center">
-            <input 
-                type="text" 
-                name="q" 
-                value="{{ query }}" 
+            <input
+                type="text"
+                name="q"
+                value="{{ query }}"
                 placeholder="Ex: concert de jazz aquest cap de setmana"
-                class="form-control"
+                class="form-control search-input"
             >
             <div class="form-check ms-2 text-nowrap">
-                <input 
-                    type="checkbox" 
-                    name="future" 
-                    value="1" 
+                <input
+                    type="checkbox"
+                    name="future"
+                    value="1"
                     id="only_future"
                     class="form-check-input"
                     {% if only_future %}checked{% endif %}
                 >
-                <label class="form-check-label" for="only_future">Només futurs</label>
+                <label class="form-check-label text-muted" for="only_future">Només futurs</label>
             </div>
-            <button type="submit" class="btn btn-primary">Cercar</button>
+            <button type="submit" class="btn btn-primary text-nowrap">Cercar</button>
         </div>
     </form>
 
+    {# Resultats #}
     {% if query %}
-        <p class="text-muted small">Model: {{ embedding_model }}</p>
-        <h5>Resultats per "{{ query }}"</h5>
+        <p class="text-muted small mb-3">Model: {{ embedding_model }}</p>
+        <h5 class="mb-3">Resultats per "{{ query }}"</h5>
+
         {% if results %}
-            <ul class="list-group">
+            <div class="d-flex flex-column gap-2">
                 {% for event, score in results %}
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <div>
-                            <a href="{{ event.get_absolute_url }}">{{ event.title }}</a>
-                            <small class="text-muted ms-2">{{ event.scheduled_date|date:"d/m/Y H:i" }}</small>
+                    <a href="{{ event.get_absolute_url }}" class="semantic-result-card text-decoration-none">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <strong>{{ event.title }}</strong>
+                                <small class="soft-text ms-2">{{ event.scheduled_date|date:"d/m/Y H:i" }}</small>
+                                <span class="badge cat-{{ event.category }} ms-2">{{ event.get_category_display }}</span>
+                            </div>
+                            <span class="semantic-score soft-text">{{ score|floatformat:3 }}</span>
                         </div>
-                        <span class="badge bg-primary">{{ score|floatformat:3 }}</span>
-                    </li>
+                    </a>
                 {% endfor %}
-            </ul>
+            </div>
         {% else %}
-            <p class="text-muted">Cap resultat.</p>
+            <p class="soft-text">Cap resultat per "{{ query }}".</p>
         {% endif %}
     {% endif %}
+
 </div>
 {% endblock %}

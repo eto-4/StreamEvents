@@ -145,3 +145,49 @@ footer small {
     position: sticky;
     top: 20px;
 }
+
+/* ─── Estils Cerca Semàntica ────────────────────────────────────────────── */
+.search-input {
+    background-color: var(--color-dark) !important;
+    color: #fff !important;
+    border: 1px solid #444 !important;
+}
+
+.semantic-result-card {
+    background-color: var(--color-card-bg);
+    border-radius: 8px;
+    padding: 12px 16px;
+    color: #e0e0e0;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+    box-shadow: 0 2px 8px var(--color-primary-shadow);
+}
+
+.semantic-result-card:hover {
+    background-color: #3a3a3a;
+    transform: translateY(-2px);
+    color: #fff;
+}
+
+.semantic-score {
+    font-size: 0.8rem;
+    background-color: var(--color-dark);
+    padding: 4px 8px;
+    border-radius: 6px;
+}
+
+/* ─── Text suavitzat ─────────────────────────────────────────── */
+.soft-text {
+    color: #dad8d8;
+}
+
+/* ─── Badges de categoria ────────────────────────────────────── */
+.cat-gaming        { background-color: #6f14de; color: #fff; }
+.cat-music         { background-color: #e91e8c; color: #fff; }
+.cat-talk          { background-color: #0097a7; color: #fff; }
+.cat-education     { background-color: #388e3c; color: #fff; }
+.cat-sports        { background-color: #e53935; color: #fff; }
+.cat-entertainment { background-color: #f57c00; color: #fff; }
+.cat-technology    { background-color: #1565c0; color: #fff; }
+.cat-art           { background-color: #ad1457; color: #fff; }
+.cat-other         { background-color: #546e7a; color: #fff; }
+

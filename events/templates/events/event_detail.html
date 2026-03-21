@@ -38,7 +38,7 @@
                         <span class="badge 
                             {% if event.status == 'live' %}bg-success
                             {% elif event.status == 'scheduled' %}bg-primary
-                            {% elif event.status == 'finished' %}bg-secondary
+                            {% elif event.status == 'finished' %}cat-{{ event.category }}
                             {% elif event.status == 'cancelled' %}bg-danger
                             {% endif %}">
                             {{ event.get_status_display }}
@@ -59,7 +59,7 @@
                     <div class="col-6">
                         <small class="text-muted d-block">Etiquetes</small>
                         {% for tag in event.get_tags_list %}
-                            <span class="badge bg-secondary">{{ tag }}</span>
+                            <span class="badge cat-{{ event.category }}">{{ tag }}</span>
                         {% empty %}
                             <span class="text-muted">Cap etiqueta</span>
                         {% endfor %}
