@@ -1,37 +1,36 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}
-Perfil públic de {{ profile_user.username }}
-{% endblock %}
+{% block title %}Perfil de {{ profile_user.display_name|default:profile_user.username }} | StreamEvents{% endblock %}
 
 {% block content %}
-<h1>Perfil de {{ profile_user.display_name|default:profile_user.username }}</h1>
+<div class="mx-auto" style="max-width: 500px;">
+    <h1>{{ profile_user.display_name|default:profile_user.username }}</h1>
 
-<div class="card mx-auto shadow-sm" style="max-width:500px;">
-    <div class="card-body text-center">
+    <div class="card border-0 shadow-sm rounded-4 p-4 text-center auth-card">
 
-        {# Avatar del usuario (o default) #}
-        <img src="{% if profile_user.avatar %}{{ profile_user.avatar.url }}{% else %}{% static 'images/default_avatar.jpg' %}{% endif %}" 
-             alt="Avatar de {{ profile_user.username }}" 
-             class="rounded-circle mb-3"
-             width="250"
-             height="250"
-             style="object-fit:cover;">
+        <img src="{% if profile_user.avatar %}{{ profile_user.avatar.url }}{% else %}{% static 'images/default_avatar.jpg' %}{% endif %}"
+             alt="Avatar de {{ profile_user.username }}"
+             class="rounded-circle mx-auto mb-3"
+             width="120" height="120"
+             style="object-fit: cover;">
 
-        {# Nombre de usuario (si display_name existe, lo usamos) #}
-        <p><strong>Nom d'usuari:</strong> {{ profile_user.display_name|default:profile_user.username }}</p>
+        <p class="text-muted mb-1">@{{ profile_user.username }}</p>
 
-        {# Bio del usuario (si existe) #}
         {% if profile_user.bio %}
-            <p>{{ profile_user.bio }}</p>
+            <p class="mt-2">{{ profile_user.bio }}</p>
         {% endif %}
 
-        {# Seguidores y siguiendo #}
-        <p>
-            <strong>Seguidors:</strong> {{ profile_user.followers_set.count }} |
-            <strong>Seguint:</strong> {{ profile_user.following_set.count }}
-        </p>
+        <div class="d-flex justify-content-center gap-4 mt-3">
+            <div>
+                <strong>{{ profile_user.followers_set.count }}</strong>
+                <small class="text-muted d-block">Seguidors</small>
+            </div>
+            <div>
+                <strong>{{ profile_user.following_set.count }}</strong>
+                <small class="text-muted d-block">Seguint</small>
+            </div>
+        </div>
 
     </div>
 </div>

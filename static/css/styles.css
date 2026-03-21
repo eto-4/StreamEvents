@@ -23,6 +23,10 @@ h1, h2, h3 {
     margin-bottom: 1.5rem;
 }
 
+.shadow-sm {
+    box-shadow: .125rem .25rem .40rem rgba(10, 10, 10, 0.562) !important;
+}
+
 label {
     color: #ddd;
 }
@@ -69,7 +73,7 @@ footer small {
 }
 
 ::placeholder {
-    color: #fff !important;
+    color: #e7e7e7ad !important;
     opacity: 1;
 }
 

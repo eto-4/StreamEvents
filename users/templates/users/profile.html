@@ -1,40 +1,35 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}El meu perfil{% endblock %}
+{% block title %}El meu perfil | StreamEvents{% endblock %}
 
 {% block content %}
-    {# Títol centrat amb el nom de display de l'usuari #}
-    <h1>Perfil de {{ user.display_name|default:user.username }}</h1>
+<div class="mx-auto" style="max-width: 500px;">
+    <h1>{{ user.display_name|default:user.username }}</h1>
 
-    {# Card centralitzada amb ombra i amplada màxima #}
-    <div class="card mx-auto shadow-sm" style="max-width:500px;">
-        <div class="card-body text-center">
+    <div class="card border-0 shadow-sm rounded-4 p-4 text-center auth-card">
 
-            {# Imatge de perfil: si existeix avatar d'usuari, el mostrem, si no, la imatge per defecte #}
-            <img src="{% if user.avatar %}{{ user.avatar.url }}{% else %}{% static 'images/default_avatar.jpg' %}{% endif %}" 
-                 alt="Avatar de {{ user.username }}"
-                 class="rounded-circle mb-3"
-                 width="250"
-                 height="250"
-                 style="object-fit:cover;">
+        <img src="{% if user.avatar %}{{ user.avatar.url }}{% else %}{% static 'images/default_avatar.jpg' %}{% endif %}"
+             alt="Avatar de {{ user.username }}"
+             class="rounded-circle mx-auto mb-3"
+             width="120" height="120"
+             style="object-fit: cover;">
 
-            {# Mostrem el nom real de l'usuari #}
-            <p><strong>Nom:</strong> {{ user.first_name }} {{ user.last_name }}</p>
+        {% if user.first_name or user.last_name %}
+            <p class="mb-1"><strong>{{ user.first_name }} {{ user.last_name }}</strong></p>
+        {% endif %}
 
-            {# Mostrem display_name si existeix #}
-            {% if user.display_name %}
-                <p><strong>Display:</strong> {{ user.display_name }}</p>
-            {% endif %}
+        {% if user.display_name %}
+            <p class="text-muted mb-1">@{{ user.display_name }}</p>
+        {% endif %}
 
-            {# Mostrem bio si existeix #}
-            {% if user.bio %}
-                <p>{{ user.bio }}</p>
-            {% endif %}
+        {% if user.bio %}
+            <p class="mt-2">{{ user.bio }}</p>
+        {% endif %}
 
-            {# Botó per editar perfil #}
-            <a href="{% url 'users:edit_profile' %}" class="btn btn-secondary mt-2">Editar perfil</a>
-
-        </div>
+        <a href="{% url 'users:edit_profile' %}" class="btn btn-primary mt-3">
+            <i class="bi bi-pencil me-1"></i> Editar perfil
+        </a>
     </div>
+</div>
 {% endblock %}

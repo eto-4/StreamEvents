@@ -140,6 +140,9 @@ class CustomUserUpdateForm(forms.ModelForm):
         for field in self.fields.values():
             field.widget.attrs.setdefault('class', 'form-control')
         # Placeholder per al camp bio
+        self.fields['first_name'].widget.attrs.update({'placeholder': 'Quin és el teu nom?'})
+        self.fields['last_name'].widget.attrs.update({'placeholder': 'Quin és el teu cognom?'})
+        self.fields['display_name'].widget.attrs.update({'placeholder': 'Com vols que la gent et digui?'})
         self.fields['bio'].widget.attrs.update({'placeholder': 'Explica alguna cosa sobre el teu perfil...'})
 
 
